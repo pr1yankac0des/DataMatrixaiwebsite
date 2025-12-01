@@ -1,0 +1,755 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+:root {
+    /* --- DARK TECH PALETTE --- */
+    --bg-dark: #050a14;          /* Almost Black Blue */
+    --card-bg: #0b1a33;          /* Dark Navy for Cards */
+    --primary-blue: #ffffff;     /* White text for Headers (High Contrast) */
+    --text-grey: #b0b8c4;        /* Silver text for paragraphs */
+    
+    --neon-green: #00e676;       /* Brighter Neon Green */
+    --accent-blue: #2979ff;      /* Bright Electric Blue */
+    
+    --border-color: #1c2e4a;     /* Subtle borders */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Apply the uniform font to the whole site */
+/* Apply the 'Inter' font to everything */
+/* Body Text: Clean and Readable */
+/* UNIFORM FONT: LORA (Elegant & Classy) */
+/* UNIFORM FONT: TIMES NEW ROMAN */
+body { 
+    font-family: 'Open Sans', sans-serif; 
+    color: var(--text-grey); 
+    line-height: 1.6; 
+    
+    /* GLOBAL BACKGROUND (The Brain Image) */
+    background: 
+        linear-gradient(rgba(5, 10, 20, 0.9), rgba(5, 10, 20, 0.8)), /* Dark Overlay */
+        url('hero-bg.jpg'); /* Your Image */
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* KEY: Keeps image still while scrolling */
+    
+    margin: 0;
+}
+
+/* Headers: Bold and Geometric */
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; /* Bold headers */
+    color: var(--primary-blue); 
+    margin-bottom: 1rem; 
+    letter-spacing: normal; /* Reset spacing */
+    font-style: normal; /* No italics */
+    text-transform: none; /* Normal capitalization */
+}
+
+/* Reset Hero Title */
+/* --- HERO SECTION WITH BACKGROUND --- */
+/* --- HERO SECTION WITH BACKGROUND --- */
+.hero {
+    /* The image url must match your file name exactly */
+    background: 
+        /* This is the overlay. I made it lighter (0.8 -> 0.6) so the image shows through */
+        linear-gradient(135deg, rgba(5, 10, 20, 0.85), rgba(5, 10, 20, 0.6)), 
+        url('hero-bg.jpg'); 
+        
+    background-size: cover;       /* Ensures image covers the whole area */
+    background-position: center;  /* Centers the image */
+    background-attachment: fixed; /* Parallax effect: Image stays still while you scroll */
+    
+    height: 100vh;                /* Full Screen Height */
+    display: flex;
+    align-items: center;
+    justify-content: center;      /* Keeps text perfectly centered */
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+/* Reset Buttons & Nav */
+.btn, .nav-links a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+/* Buttons: Bold and Punchy */
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+/* Headers share the same font, just bolder */
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Inter', sans-serif; /* Same font as body */
+    font-weight: 700; /* Bold for distinction */
+    color: var(--primary-blue); 
+    margin-bottom: 1rem; 
+    letter-spacing: -0.5px; /* Tighter tracking for a modern tech look */
+}
+
+/* Typography */
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 1rem; }
+a { text-decoration: none; transition: 0.3s; }
+
+/* Utilities */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-padding { padding: 80px 0; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 10px rgba(41, 121, 255, 0.3); }
+.section-subtitle { text-align: center; color: var(--text-grey); max-width: 600px; margin: 0 auto 50px auto; }
+
+/* Buttons */
+.btn { display: inline-block; padding: 12px 30px; border-radius: 50px; font-weight: 600; border: none; cursor: pointer; }
+.btn-primary { 
+    background: var(--neon-green); 
+    color: #000; /* Black text on green button for readability */
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); 
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px rgba(0, 230, 118, 0.6); background: #00ff88; }
+
+.btn-outline { border: 2px solid var(--neon-green); color: var(--neon-green); background: transparent; margin-left: 10px; }
+.btn-outline:hover { background: var(--neon-green); color: black; box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); }
+
+/* Navbar */
+header {
+    /* Completely Invisible Background */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    
+    /* No Lines or Shadows */
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* Float ON TOP of the page content */
+    position: absolute; 
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes Logo to left, Links to right */
+    align-items: center;            /* Vertically centers everything */
+    height: 80px;                   /* Enforce a fixed height */
+    width: 100%;
+    flex-wrap: nowrap;              /* PREVENTS them from dropping to a new line */
+}
+.nav-links {
+    display: flex;
+    gap: 30px;        /* Adds space between the words */
+    align-items: center;
+    margin-left: auto; /* Pushes links to the right if needed */
+}
+.logo img { height: 45px; filter: brightness(1.2); } /* Makes logo pop */
+.nav-links a { color: var(--text-grey); font-weight: 600; margin-left: 25px; }
+.nav-links a:hover { color: var(--neon-green); text-shadow: 0 0 8px rgba(0, 230, 118, 0.5); }
+/* --- ACTIVE LINK STATE --- */
+.nav-links a.active {
+    color: var(--neon-green);
+    border-bottom: 2px solid var(--neon-green);
+    padding-bottom: 5px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* ADD THESE 3 LINES TO REMOVE THE SEPARATION */
+    border: none !important;      /* Forces border removal */
+    box-shadow: none !important;  /* Removes any shadows causing lines */
+    background: transparent;      /* Ensures no background color hides the image */
+}
+.hero h1 { color: white; font-size: 3.5rem; min-height: 80px; text-shadow: 0 0 20px rgba(41, 121, 255, 0.5); }
+.hero p { font-size: 1.2rem; max-width: 700px; margin: 20px auto 40px auto; color: #d0d6e0; }
+
+/* Typing Cursor Animation */
+.typing-container #typewriter::after { content: '|'; animation: blink 1s infinite; color: var(--neon-green); }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Services (Cards) */
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.service-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    border-color: var(--neon-green);
+}
+.icon-box { font-size: 2rem; color: var(--accent-blue); margin-bottom: 20px; text-shadow: 0 0 10px rgba(41, 121, 255, 0.4); }
+.service-card ul { padding-left: 20px; margin: 15px 0; color: var(--text-grey); }
+.service-card ul li { margin-bottom: 8px; }
+.learn-more { color: var(--neon-green); font-weight: bold; font-size: 0.9rem; }
+
+/* --- UPGRADED TECH STACK (Glass Cards) --- */
+.tech-stack {
+    background: transparent;      /* Ensures the brain image shows through */
+    position: relative;
+    border: none !important;      /* Removes any border lines */
+    box-shadow: none !important;  /* Removes the shadow that looks like a line */
+    padding: 80px 20px;           /* Keeps the spacing correct */
+}
+
+.tech-grid {
+    display: grid;
+    /* This creates a responsive grid of cards */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* The Glass Card Container */
+.tech-column {
+    background: rgba(255, 255, 255, 0.03); /* Very subtle see-through */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px 20px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Hover Effect on the whole card */
+.tech-column:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* The Category Titles (LLM, Database, etc.) */
+.tech-column h4 {
+    font-size: 1.1rem;
+    color: var(--neon-green); /* Pop color */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* The Container for the buttons */
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* The Tech "Chip" Buttons */
+.tech-pill {
+    background: rgba(11, 26, 51, 0.6); /* Dark Blue Background */
+    border: 1px solid var(--accent-blue);
+    padding: 8px 16px;
+    border-radius: 6px; /* Slightly squared looks more "Tech" than round */
+    font-size: 0.85rem;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    
+    /* Subtle glow by default */
+    box-shadow: 0 0 5px rgba(41, 121, 255, 0.1);
+}
+
+/* Hover Effect on individual Tech */
+.tech-pill:hover {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 15px rgba(41, 121, 255, 0.6);
+    transform: scale(1.05);
+}
+/* Style for the new Icons */
+.tech-icon {
+    font-size: 3rem; /* Big size */
+    color: var(--accent-blue); /* Electric Blue */
+    margin-bottom: 20px;
+    
+    /* Cool Blue Glow Effect */
+    text-shadow: 0 0 20px rgba(41, 121, 255, 0.5);
+    
+    transition: transform 0.3s ease;
+}
+
+/* When you hover the card, the icon floats up */
+.tech-column:hover .tech-icon {
+    transform: translateY(-10px) scale(1.1);
+    color: var(--neon-green); /* Changes to Green on hover! */
+    text-shadow: 0 0 25px rgba(0, 230, 118, 0.6);
+}
+/* Team */
+.team-card { text-align: center; max-width: 400px; margin: 0 auto; background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+.team-card img {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3);
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+/* Contact */
+.contact-wrapper { 
+    display: flex; flex-wrap: wrap; gap: 50px; 
+    background: var(--card-bg); 
+    padding: 40px; 
+    border-radius: 12px; 
+    border: 1px solid var(--border-color); 
+}
+.contact-form, .contact-info { flex: 1; min-width: 300px; }
+.input-field { 
+    width: 100%; padding: 12px; margin-bottom: 15px; 
+    background: #050a14; /* Very Dark Input */
+    border: 1px solid var(--border-color); 
+    border-radius: 6px; 
+    color: white; 
+}
+.input-field:focus { outline: none; border-color: var(--neon-green); }
+.info-item { display: flex; gap: 15px; margin-bottom: 25px; }
+.info-item i { font-size: 1.2rem; color: var(--neon-green); margin-top: 5px; }
+
+/* Footer */
+footer { background: #02040a; color: white; text-align: center; padding: 30px 0; border-top: 1px solid var(--border-color); }
+.small-text { font-size: 0.75rem; opacity: 0.6; margin-top: 5px; }
+
+/* Scroll Reveal Animation Classes */
+.reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .navbar { flex-direction: column; height: auto; padding: 15px; background: var(--bg-dark); }
+    .nav-links { margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .nav-links a { margin: 0; }
+    .contact-wrapper { padding: 20px; }
+}
+/* --- NEW TECH EFFECTS --- */
+
+
+
+/* 2. CRT Scanline Overlay (TV Screen Effect) */
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 999;
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 118, 0.04) 50%, rgba(0,0,0,0) 100%);
+    opacity: 0.1;
+    position: fixed;
+    bottom: 100%;
+    left: 0;
+    pointer-events: none;
+    animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+    0% { bottom: 100%; }
+    100% { bottom: -100%; }
+}
+
+/* 3. Holographic Text Effect */
+.typing-container span {
+    background: linear-gradient(to right, #ffffff, #00e676, #2979ff, #ffffff);
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* 4. Tech Card Pulse */
+.service-card:hover .icon-box i {
+    animation: pulse-green 1s infinite;
+}
+
+@keyframes pulse-green {
+    0% { text-shadow: 0 0 0 rgba(0, 230, 118, 0.4); }
+    70% { text-shadow: 0 0 20px rgba(0, 230, 118, 0.8); }
+    100% { text-shadow: 0 0 0 rgba(0, 230, 118, 0.4); }
+}
+/* --- TYPEWRITER + FADE IN COMBO EFFECT --- */
+
+/* 1. Define the fade animation */
+@keyframes subtleFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px); /* Optional: A tiny upward float */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. Apply it to the container holding the typing text */
+.hero h1.typing-container {
+    /* Start invisible */
+    opacity: 0;
+    
+    /* Run the fade animation over 2.5 seconds. 
+       'forwards' makes sure it stays visible at the end. */
+    animation: subtleFadeIn 2.5s ease-out forwards;
+    
+    /* Ensure the glowing shadow is also part of the fade */
+    text-shadow: 0 0 20px rgba(41, 121, 255, 0.5);
+}
+
+/* Ensure the blinking cursor is always visible once it starts */
+.typing-container #typewriter::after {
+    opacity: 1;
+}
+/* --- GENERIC HOVER UP CLASS --- */
+.hover-up {
+    display: inline-block; /* Necessary for transform to work on text */
+    transition: transform 0.3s ease;
+    cursor: default; /* Keeps cursor as a pointer/text selector */
+}
+
+.hover-up:hover {
+    transform: translateY(-5px); /* Moves it up 5 pixels */
+    /* Optional: Add a subtle text glow on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+}
+/* --- HERO ENTRANCE ANIMATION --- */
+
+/* 1. Define the animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Start 30px down */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End in normal position */
+    }
+}
+
+/* 2. Apply to the Paragraph */
+.hero p {
+    opacity: 0; /* Hidden by default */
+    animation: fadeInUp 0.8s ease-out forwards; /* Run animation */
+    animation-delay: 0.5s; /* Wait 0.5s (let the title start typing first) */
+}
+
+/* 3. Apply to the Buttons */
+.hero-buttons {
+    opacity: 0; /* Hidden by default */
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.8s; /* Wait 0.8s (appears after the text) */
+}
+/* --- PREMIUM FOOTER STYLES --- */
+
+footer {
+    /* KEY CHANGE: Transparent lets the body background show through */
+    background: transparent; 
+    
+    color: #b0b8c4;
+    padding-top: 80px;
+    
+    /* Remove the top border line so it blends perfectly */
+    border-top: none !important; 
+    
+    font-size: 0.95rem;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 50px;
+    padding-bottom: 60px;
+}
+
+/* Brand Column */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+.footer-logo img { height: 40px; }
+.footer-desc { line-height: 1.6; margin-bottom: 25px; font-size: 0.9rem; opacity: 0.8; }
+
+/* Interactive Social Icons */
+.social-links { display: flex; gap: 15px; }
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05); /* Glass effect */
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+.social-links a:hover {
+    background: var(--neon-green); /* Turns Green */
+    color: black;
+    transform: translateY(-5px); /* Floats Up */
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.6); /* Glows */
+}
+
+/* --- FIXED HEADER ALIGNMENT --- */
+/* --- CENTERED HEADER UNDERLINE --- */
+
+.footer-col h4 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block; 
+    padding-bottom: 8px; 
+}
+
+/* The Green Underline - Now Centered */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    
+    /* 1. Move to the exact middle of the text box */
+    left: 50%;
+    
+    /* 2. Shift it back by half its own width so it looks perfectly centered */
+    transform: translateX(-50%);
+    
+    bottom: 0;
+    width: 40px; 
+    height: 3px; 
+    background: var(--neon-green);
+    border-radius: 2px;
+}
+
+
+/* Interactive Links */
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a { 
+    color: #b0b8c4; 
+    transition: all 0.3s ease; 
+    display: inline-block;
+}
+.footer-links a:hover {
+    color: var(--neon-green);
+    transform: translateX(8px); /* Slides to the right */
+}
+
+/* Newsletter Form */
+.newsletter-form {
+    display: flex;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.newsletter-form input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+}
+.newsletter-form button {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.newsletter-form button:hover {
+    background: var(--neon-green);
+    color: black;
+}
+
+/* Footer Bottom Strip */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #666;
+}
+.legal-links a { color: #666; margin-left: 20px; transition: 0.3s; }
+.legal-links a:hover { color: var(--neon-green); }
+
+/* Mobile Stack */
+@media (max-width: 768px) {
+    .footer-bottom { flex-direction: column; text-align: center; gap: 15px; }
+    .legal-links a { margin: 0 10px; }
+}
+/* --- TEAM SOCIAL ICONS --- */
+.team-socials {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-socials a {
+    color: #b0b8c4; /* Light Grey by default */
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.team-socials a:hover {
+    color: var(--neon-green); /* Glows Green on Hover */
+    transform: translateY(-3px); /* Floats up slightly */
+}
+/* --- TEAM PHOTO STYLES --- */
+.team-photo {
+    width: 120px;            /* Set a fixed width */
+    height: 120px;           /* Same height ensures a perfect circle */
+    border-radius: 50%;      /* This cuts the square image into a circle */
+    object-fit: cover;       /* Ensures the face isn't stretched or squished */
+    
+    /* Centering and Spacing */
+    display: block;
+    margin: 0 auto 20px auto; /* Top:0, Right:Auto, Bottom:20px, Left:Auto */
+    
+    /* Neon Theme Border */
+    border: 3px solid var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3); /* Subtle green glow */
+}
+/* --- "LIVE" ANIMATIONS --- */
+
+/* 1. Make the Title "Breathe" (Glow Pulse) */
+.hero h1 {
+    animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% { text-shadow: 0 0 20px rgba(41, 121, 255, 0.4); }
+    50% { text-shadow: 0 0 50px rgba(41, 121, 255, 0.9), 0 0 20px rgba(41, 121, 255, 0.5); }
+    100% { text-shadow: 0 0 20px rgba(41, 121, 255, 0.4); }
+}
+
+/* 2. Make the Buttons "Levitate" (Float Up and Down) */
+/* --- BUTTONS ENTRANCE ANIMATION --- */
+
+.hero-buttons {
+    opacity: 0; /* Start invisible */
+    
+    /* Run the "Fade In Up" animation */
+    animation: fadeInUp 0.8s ease-out forwards; 
+    
+    /* Wait 1.0s before starting (so they appear AFTER the text) */
+    animation-delay: 1.0s; 
+    
+    margin-top: 30px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+/* Button Hover Animation */
+.btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-5px); /* Moves up 5px when you touch it */
+    box-shadow: 0 10px 20px rgba(0, 230, 118, 0.4); /* Adds a nice glow */
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); } 
+    100% { transform: translateY(0px); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); } /* Moves up 10px */
+    100% { transform: translateY(0px); }
+}
+
+/* 3. The "Energy Sweep" (Light moving across screen) */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen left */
+    width: 50%;
+    height: 100%;
+    /* A faint diagonal beam of light */
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: skewX(-25deg);
+    pointer-events: none; /* Let clicks pass through */
+    animation: shine 8s infinite; /* Runs every 8 seconds */
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 200%; } /* Fast sweep across */
+    100% { left: 200%; } /* Pause before restarting */
+}
+/* --- LIVE DATA STREAM EFFECT --- */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; /* Allows you to click links through it */
+    z-index: 0; /* Sits on top of background, behind text */
+    
+    /* 1. Create the Dots Pattern */
+    background-image: radial-gradient(rgba(0, 230, 118, 0.4) 1px, transparent 1px);
+    background-size: 40px 40px; /* Distance between dots */
+    
+    /* 2. Animate them */
+    animation: 
+        dataFlow 20s linear infinite, /* Moves the dots down */
+        dataPulse 4s ease-in-out infinite alternate; /* Makes them flicker */
+}
+
+/* Animation 1: Move the dots down slowly */
+@keyframes dataFlow {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+}
+
+/* Animation 2: Make the dots glow and fade (Flicker) */
+@keyframes dataPulse {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.6; }
+}
+
+/* IMPORTANT: Ensure text sits ON TOP of the moving dots */
+.hero, .navbar, .services, #technology, #case-studies, #about, #contact, footer {
+    position: relative;
+    z-index: 2; 
+}
