@@ -10,13 +10,21 @@
 </head>
 <body>
 <div class="scanline"></div>
+<video autoplay muted loop playsinline id="bg-video">
+    <source src="hero-video.mp4" type="video/mp4">
+</video>
+
+<div id="video-overlay"></div>
     <header>
     <div class="container navbar">
         <div class="logo">
             <a href="#home" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-                <img src="logo.png" alt="DataMatrixai Logo" style="height: 45px; width: auto;">
-                <span style="color: white; font-size: 1.5rem; font-weight: 700; font-family: 'Montserrat', sans-serif;">DataMatrixai</span>
-            </a>
+    <img src="logo.png" alt="DataMatrixai Logo" style="height: 45px; width: auto;">
+    
+    <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; line-height: 1;">
+        <span style="color: #003153;">DataMatrix</span><span style="color: #00c853;">ai</span>
+    </div>
+</a>
         </div> 
         <nav class="nav-links">
             <a href="#home">Home</a>
@@ -254,11 +262,11 @@
             
             <div class="footer-col brand-col">
                 <a href="#" class="footer-logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 20px;">
-                <img src="logo.png" alt="DataMatrixai" style="height: 40px; width: auto;">
+    <img src="logo.png" alt="DataMatrixai" style="height: 40px; width: auto;">
     
-                <span style="color: white; font-size: 1.4rem; font-weight: 700; font-family: 'Montserrat', sans-serif;">
-        DataMatrixai
-    </span>
+    <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1;">
+        <span style="color: #003153;">DataMatrix</span><span style="color: #00c853;">ai</span>
+    </div>
 </a>
                 <p class="footer-desc">
                     Transforming businesses through innovative AI solutions that drive growth, efficiency, and competitive advantage.
@@ -314,24 +322,41 @@
     </div>
 </footer>
     <script>
-        // 1. Classic Typewriter Effect
-        const textToType = "Transforming Business with Advanced AI";
+        // 1. Dual-Color Typewriter Effect
+        const textPart1 = "Transforming Business with ";
+        const textPart2 = "Advanced AI";
+        
         const typeWriterElement = document.getElementById('typewriter');
         
-        // Clear text to start fresh
-        if(typeWriterElement) {
-            typeWriterElement.innerHTML = "";
-            let i = 0;
-            function typeWriter() {
-                if (i < textToType.length) {
-                    typeWriterElement.innerHTML += textToType.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50); 
+        // Clear text to start
+        typeWriterElement.innerHTML = "";
+        
+        let i = 0;
+        let j = 0;
+        
+        function typeWriter() {
+            // Phase 1: Type the White text
+            if (i < textPart1.length) {
+                typeWriterElement.innerHTML += textPart1.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50); 
+            } 
+            // Phase 2: Create the Blue Span and type inside it
+            else if (j < textPart2.length) {
+                // If the span doesn't exist yet, create it
+                if (j === 0) {
+                    typeWriterElement.innerHTML += '<span class="highlight-blue"></span>';
                 }
+                
+                // Target the new span and add letters to it
+                const blueSpan = typeWriterElement.querySelector('.highlight-blue');
+                blueSpan.innerHTML += textPart2.charAt(j);
+                j++;
+                setTimeout(typeWriter, 50);
             }
-            window.onload = typeWriter;
         }
-
+        
+        window.onload = typeWriter;
         // 2. SCROLL SPY (Highlights Menu Links)
         const sections = document.querySelectorAll('section');
         const navLi = document.querySelectorAll('.nav-links a');
