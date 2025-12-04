@@ -42,31 +42,20 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     text-transform: none;
 }
-
-/* Reset Hero Title */
-/* --- HERO SECTION WITH BACKGROUND --- */
-/* --- HERO SECTION WITH BACKGROUND --- */
 .hero {
-    /* The image url must match your file name exactly */
-    background: 
-        /* This is the overlay. I made it lighter (0.8 -> 0.6) so the image shows through */
-        linear-gradient(135deg, rgba(5, 10, 20, 0.85), rgba(5, 10, 20, 0.6)), 
-        url('hero-video.mp4'); 
-        
-    background-size: cover;       /* Ensures image covers the whole area */
-    background-position: center;  /* Centers the image */
-    background-attachment: fixed; /* Parallax effect: Image stays still while you scroll */
+    /* Replace 'background.jpg' with your actual image file name */
+    background: url('background.jpg') no-repeat center center/cover;
     
-    height: 100vh;                /* Full Screen Height */
-    display: flex;
-    align-items: center;
-    justify-content: center;      /* Keeps text perfectly centered */
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Keeps the image fixed in place while you scroll (Parallax effect) */
+    background-attachment: fixed; 
+    
+    width: 100%;
+    height: 100vh; /* Ensures it covers the full screen height */
     position: relative;
-    z-index: 1;
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
 }
-
 /* Reset Buttons & Nav */
 .btn, .nav-links a {
     font-family: 'Open Sans', sans-serif;
@@ -179,16 +168,18 @@ header {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    /* Replace 'background.jpg' with your actual image file name */
+    background: url('hero-bg.jpg') no-repeat center center/cover;
     
-    /* ADD THESE 3 LINES TO REMOVE THE SEPARATION */
-    border: none !important;      /* Forces border removal */
-    box-shadow: none !important;  /* Removes any shadows causing lines */
-    background: transparent;      /* Ensures no background color hides the image */
+    /* Keeps the image fixed in place while you scroll (Parallax effect) */
+    background-attachment: fixed; 
+    
+    width: 100%;
+    height: 100vh; /* Ensures it covers the full screen height */
+    position: relative;
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
 }
 .hero h1 {
     /* Change color from white to black */
@@ -399,7 +390,7 @@ footer { background: #02040a; color: white; text-align: center; padding: 30px 0;
 
 /* 2. Hover State (Neon Green + Glow) */
 .service-card:hover .icon-box i {
-    color: #00c853 !important;       /* Turns Neon Green */
+    color: blue !important;       /* Turns Neon Green */
     text-shadow: 0 0 20px rgba(0, 200, 83, 0.8) !important; /* Adds Glow */
     transform: scale(1.1);           /* Pops up slightly */
 }
@@ -783,15 +774,7 @@ body {
        If the video blinks, the user sees this color, not black. */
     background-color: #050a14; 
 }
-#bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;  /* 100% of viewport width */
-    height: 100vh; /* 100% of viewport height */
-    object-fit: cover; /* Zooms in to cover empty spots */
-    z-index: -100;
-}
+
 /* --- FORCE HERO TEXT BLACK (The "Nuclear" Fix) --- */
 
 .hero h1, 
@@ -958,4 +941,754 @@ footer, footer h4, footer a, footer p {
     color: #000000 !important;       /* Dark Grey for readability */
     font-weight: 800 !important;     /* Make it slightly bolder */
     opacity: 1 !important;           /* Ensure it's not faded */
+}
+/* 1. Force the container to be a normal block, NOT flexbox */
+.hero-content, 
+.hero h1 {
+    display: block !important;       /* This fixes the scattering */
+    text-align: center !important;   /* Centers the text lines */
+    max-width: 900px !important;     /* Limits width so it breaks nicely */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
+    /* Font Settings */
+    font-size: 3.5rem !important;    /* Good size, not too huge */
+    line-height: 1.2 !important;     /* Keeps lines close together */
+    font-weight: 800 !important;
+    color: #000000 !important;
+}
+
+/* 2. Make sure the typing part stays on the same line */
+.typing-container, 
+#typewriter {
+    display: inline !important;      /* Keeps it in the sentence flow */
+    color: #000000 !important;
+}
+
+/* 3. Add a small margin to the bottom of the text */
+.hero h1 {
+    margin-bottom: 30px !important;
+}
+/* --- CENTER HERO SUBTITLE --- */
+.hero p {
+    text-align: center !important;     /* Forces text to center */
+    margin-left: auto !important;      /* Pushes to middle */
+    margin-right: auto !important;     /* Pushes to middle */
+    display: block !important;         /* Prevents scattering */
+    
+    /* Layout & Size */
+    width: 100% !important;
+    max-width: 800px !important;       /* Keeps lines readable */
+    margin-top: 20px !important;       /* Space between Title and Text */
+    
+    /* Visibility */
+    color: #333333 !important;         /* Dark Grey for readability */
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+}
+/* --- FORCE ADVANCED AI BLUE --- */
+.highlight-blue {
+    color: #003153 !important;             /* Prussian Blue */
+    -webkit-text-fill-color: #003153 !important; /* Override gradients */
+    font-weight: inherit !important;       /* Keep the boldness */
+}
+
+/* Ensure the blinking cursor is also blue */
+.cursor, .typed-cursor, #typewriter::after {
+    color: #003153 !important;
+}
+#services {
+    /* 1. REPLACE 'your-image.jpg' with the actual filename of your image */
+    background-image: url('servicesimg.jpg');
+
+    /* 2. Ensures the image covers the whole section */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* 3. FIX: Your title "Our Services" is currently hard to read (black on dark). 
+       This turns it white. */
+    color: #ffffff; 
+}
+
+/* Optional: Adds a dark overlay so text stays readable on top of any image */
+#services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Adjust 0.7 to make it darker/lighter */
+    z-index: 1;
+}
+
+/* Ensures content sits above the dark overlay */
+#services .container, #services h2, #services .service-card {
+    position: relative;
+    z-index: 2;
+}
+/* --- FIX TEXT COLOR FOR SERVICES SECTION --- */
+
+/* 1. Makes the main "Our Services" title white */
+#services h2 {
+    color: #ffffff;
+}
+
+/* 2. Makes the subtitle ("Comprehensive AI solutions...") white */
+#services p {
+    color: #ffffff;
+    opacity: 0.9; /* Optional: Makes it slightly softer than the title */
+}
+#services h2, 
+#services p {
+    color: #ffffff !important;
+}
+.service-card {
+    /* Semi-transparent lighter background */
+    background: rgba(255, 255, 255, 0.05) !important;
+    
+    /* The blur effect behind the card */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* A thin white border to define the edges */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Soft shadow to lift it up */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+/* --- PREMIUM CARD STYLING --- */
+
+.service-card {
+    /* 1. Glassy Background: Dark but slightly transparent */
+    background: rgba(17, 25, 40, 0.75) !important;
+    
+    /* 2. The Blur Effect: Blurs the background lines behind the card */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* 3. The Border: A thin, crisp line to define the edges */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* 4. Rounded Corners & Spacing */
+    border-radius: 16px;
+    padding: 30px;
+    
+    /* 5. Smooth Animation for Hover */
+    transition: all 0.3s ease;
+    
+    /* 6. Deep Shadow to lift it off the background */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* HOVER EFFECT: Makes the card glow when you touch it */
+.service-card:hover {
+    transform: translateY(-7px); /* Moves up */
+    border-color: rgba(16, 185, 129, 0.6); /* Green border glow */
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); /* Green glow behind */
+}
+
+/* INTERIOR TEXT STYLING */
+.service-card h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: #cbd5e1; /* Light grey for description */
+    line-height: 1.6;
+}
+
+.service-card ul li {
+    color: #94a3b8; /* Slightly darker grey for list items */
+    margin-bottom: 8px;
+}
+/* --- ICON HOVER: WHITE TO BLUE --- */
+
+/* 1. Default State: Icons are White */
+.service-card i, 
+.service-card svg {
+    color: #ffffff !important; /* Force white by default */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* 2. Hover State: Icons turn Blue when card is hovered */
+.service-card:hover i, 
+.service-card:hover svg {
+    /* Change this HEX code if you want a different shade of blue */
+    color: #2979ff !important; /* Bright Tech Blue */
+    
+    /* Optional: Adds a blue glow around the icon */
+    filter: drop-shadow(0 0 12px rgba(41, 121, 255, 0.8)) !important;
+    
+    /* Slight zoom for effect */
+    transform: scale(1.1);
+}
+/* --- LEARN MORE LINK: GREEN TO BLUE --- */
+
+/* 1. Default State: Changes text from Green to Blue */
+.service-card a {
+    color: #2979ff !important; /* Matches your new Blue icons */
+    text-decoration: none;      /* Removes underline if present */
+    transition: all 0.3s ease;
+}
+
+/* 2. Hover State: Makes the link glow bright cyan when hovered */
+.service-card a:hover {
+    color: #00e1ff !important; /* Brighter glowing blue */
+    text-shadow: 0 0 8px rgba(0, 225, 255, 0.6); /* Glow effect */
+    letter-spacing: 0.5px; /* Slight expansion for a premium feel */
+}
+/* Change the card border glow from Green to Blue */
+.service-card:hover {
+    border-color: rgba(41, 121, 255, 0.6) !important;
+    box-shadow: 0 0 20px rgba(41, 121, 255, 0.2) !important;
+}
+/* --- ICON HOVER EFFECT: GLOWING BLUE --- */
+
+/* 1. Ensure icons are white by default with smooth animation */
+.service-card i, 
+.service-card svg {
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* 2. When hovering the CARD, turn the ICON blue */
+.service-card:hover i, 
+.service-card:hover svg {
+    /* The Blue Color */
+    color: #0088ff !important; 
+    
+    /* The Blue Glow Shadow */
+    filter: drop-shadow(0 0 12px rgba(0, 136, 255, 0.8)) !important;
+    
+    /* Optional: Makes the icon pop out slightly */
+    transform: scale(1.1);
+}
+/* --- CENTER THE BOTTOM CARDS --- */
+
+/* 1. This targets any div inside #services that is acting as a grid/row */
+#services div[class*="grid"], 
+#services .row, 
+#services .container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    
+    /* Optional: Ensure the gap between cards stays consistent */
+    gap: 2rem !important; 
+}
+
+/* 2. Safety check: Ensures the cards don't stretch too wide */
+.service-card {
+    /* Prevents the last 2 cards from becoming giant */
+    flex: 0 1 auto !important; 
+    width: 350px; /* Adjust this number to match your preferred card size */
+    max-width: 100%;
+}
+/* --- FIX: RE-ALIGN TITLE & TEXT --- */
+
+/* 1. Force the Title and Text to take full width (so they stack) */
+#services h2, 
+#services p {
+    width: 100% !important;       /* Forces them to fill the row */
+    text-align: center !important; /* Centers the text */
+    display: block !important;     /* Ensures they behave like blocks */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* 2. Ensure the main container wraps content correctly */
+#services .container {
+    display: flex !important;
+    flex-wrap: wrap !important;    /* Allows items to drop to new lines */
+    justify-content: center !important;
+    flex-direction: row !important; /* Keeps standard flow */
+}
+
+/* 3. Ensure the Grid of cards takes full width below the text */
+#services div[class*="grid"] {
+    width: 100% !important;
+    justify-content: center !important;
+}
+/* --- FIX: REMOVE DARK OVERLAY (Show Original Image) --- */
+
+/* 1. Hide the dark layer that sits on top */
+#technology::before {
+    display: none !important;
+    background: none !important;
+}
+
+/* 2. Ensure the background is just the pure image */
+#technology {
+    /* Replace 'your-image.jpg' with your file name */
+    background-image: url('techimg.jpg') !important;
+    
+    /* Ensure no dark colors are mixing with the image */
+    background-color: transparent !important;
+    background-blend-mode: normal !important;
+}
+
+/* 3. (Optional) Add a text shadow so white text is still readable on bright images */
+#technology h2, 
+#technology p, 
+#technology h3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+/* --- TECHNOLOGY CARDS: GLASS EFFECT --- */
+
+/* 1. Target the cards inside the technology section */
+#technology div[class*="bg-"], /* Targets the dark background cards */
+#technology .card {
+    /* Make the background dark but see-through (60% opacity) */
+    background: rgba(15, 23, 42, 0.6) !important;
+    
+    /* The "Frosted" Blur Effect */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* Add a subtle white border */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    
+    /* Soft shadow for depth */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Smooth hover animation */
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* 2. Hover Effect: Floats up and border gets brighter */
+#technology div[class*="bg-"]:hover,
+#technology .card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(15, 23, 42, 0.7) !important;
+}
+
+/* 3. FIX: Ensure the small white buttons (OpenAI, Python, etc.) stay solid */
+#technology button, 
+#technology .badge, 
+#technology span[class*="bg-white"] {
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    background-color: #ffffff !important; /* Keep them bright white */
+    color: #000000 !important; /* Keep text black */
+}
+/* --- TECHNOLOGY CARDS: WHITE FROSTED GLASS --- */
+
+/* 1. Target the cards to make them White Glass */
+#technology div[class*="bg-"], 
+#technology .card {
+    /* The Magic: White with low opacity (10%) */
+    background: rgba(255, 255, 255, 0.1) !important;
+    
+    /* Strong blur for that "Milky" look */
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    
+    /* A crisp, semi-bright white border */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    
+    /* Soft shadow */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    
+    /* Smooth animation */
+    transition: all 0.3s ease;
+}
+
+/* 2. HOVER: Make it glow whiter when touched */
+#technology div[class*="bg-"]:hover,
+#technology .card:hover {
+    /* Lighten the glass to 20% opacity */
+    background: rgba(255, 255, 255, 0.2) !important;
+    
+    /* Bright white border glow */
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    
+    /* Lift effect */
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 3. ENSURE TEXT IS READABLE */
+/* Since the card is now light glass, we ensure the Title Text stands out */
+#technology h3, 
+#technology h4 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Adds shadow to text so it pops */
+}
+
+/* 3. IMPORTANT: Ensure text is readable on the clear background */
+#technology h3, 
+#technology h4, 
+#technology p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* Adds a shadow to text so it pops */
+}
+#technology {
+    /* Forces the image to fit exactly within the width and height */
+    background-size: 100% 100% !important;
+    
+    /* Ensures it doesn't repeat */
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+/* --- FIX: TECHNOLOGY TITLE COLOR --- */
+
+/* 1. Target the main "Our Technology Stack" Title */
+#technology h2 {
+    color: #ffffff !important;       /* Forces text to White */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important; /* Adds shadow for contrast */
+}
+
+/* 2. Target the subtitle ("Built on robust, scalable...") */
+#technology p {
+    color: #e2e8f0 !important;       /* Off-white for the subtitle */
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
+    font-weight: 500;
+}
+/* --- SUCCESS STORIES / CASE STUDIES BACKGROUND --- */
+
+/* 1. Target the section using the ID found in your HTML */
+#case-studies {
+    /* REPLACE 'your-image-name.jpg' with the actual file name */
+    background-image: url('technology.jpg') !important;
+    
+    /* Ensures the image covers the full area */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    
+    /* Prepares the section for the dark overlay */
+    position: relative;
+    z-index: 0;
+    
+    /* Removes the inline 'background: transparent' from HTML */
+    background-color: #000 !important; 
+}
+
+/* 2. THE DARK OVERLAY (Crucial for reading text) */
+#case-studies::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Adds a 70% black layer on top of the image */
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: -1; /* Puts it BEHIND text but IN FRONT of image */
+}
+
+/* 3. FIX TEXT COLORS */
+#case-studies h2, 
+#case-studies p {
+    color: #ffffff !important;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Shadow makes text pop */
+}
+/* --- FIX: MAKE IMAGE BRIGHTER (Reduce Overlay) --- */
+
+/* 1. Target the Title and Paragraphs in Case Studies */
+#case-studies h2, 
+#case-studies p,
+#case-studies li {
+    /* Change text to Deep Navy/Black */
+    color: #020617 !important; 
+    
+    /* Make text slightly bolder so it stands out against the image */
+    font-weight: 1000 !important;
+    
+}
+
+/* 2. Optional: If you have a subtitle that needs to be slightly lighter */
+#case-studies p {
+    color: #1e293b !important; /* Dark Slate Gray */
+    font-weight: 600 !important;
+}
+/* --- FIX: CHANGE BUTTON TEXT TO BLACK --- */
+
+/* 1. Target the button specifically in the Case Studies section */
+#case-studies .btn,
+#case-studies .btn-primary {
+    /* Change text color to solid black */
+    color: #000000 !important;
+    
+    /* Make it bold so it is super easy to read */
+    font-weight: 800 !important;
+    
+    /* Remove any text shadow that might make it look muddy */
+    text-shadow: none !important;
+}
+
+/* 2. HOVER STATE: Keep it black (or turn dark gray) when you touch it */
+#case-studies .btn:hover,
+#case-studies .btn-primary:hover {
+    color: #000000 !important; /* Keeps it black */
+    background-color: #22c55e !important; /* Keeps the button bright green */
+    
+    /* Optional: Adds a slight lift effect */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.6);
+}
+/* --- FIX: BUTTON COLOR TO PRUSSIAN BLUE --- */
+
+/* 1. Target the button in the Case Studies section */
+#case-studies .btn,
+#case-studies .btn-primary {
+    /* Prussian Blue Background */
+    background-color: #003153 !important; 
+    border-color: #003153 !important;
+    
+    /* Text must be WHITE to be readable on dark blue */
+    color: #ffffff !important; 
+    
+    /* Matching Blue Glow */
+    box-shadow: 0 0 15px rgba(0, 49, 83, 0.7) !important;
+}
+
+/* 2. HOVER EFFECT: Make it slightly brighter when touched */
+#case-studies .btn:hover,
+#case-studies .btn-primary:hover {
+    /* Lighter Blue */
+    background-color: #00416A !important; 
+    color: #ffffff !important;
+    
+    /* Stronger Glow */
+    box-shadow: 0 5px 20px rgba(0, 75, 120, 0.8) !important;
+    transform: translateY(-2px);
+}
+/* --- FORCE TRANSPARENT GLASS (Nuclear Option) --- */
+
+/* 1. Target ANY card-like box inside the Services section */
+#services .service-card, 
+#services .card, 
+#services div[class*="bg-gray"],   /* Catches Tailwind gray backgrounds */
+#services div[class*="bg-slate"],  /* Catches Tailwind slate backgrounds */
+#services div[class*="bg-zinc"] {
+    /* FORCE the background to be see-through */
+    background-color: transparent !important;
+    background: rgba(255, 255, 255, 0.03) !important; /* 3% opacity white */
+    
+    /* Apply the Blur */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* Keep the Border */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    
+    /* Remove any solid colors/gradients interfering */
+    background-image: none !important;
+}
+
+/* 2. HOVER: Slight glow but keep it transparent */
+#services .service-card:hover,
+#services .card:hover,
+#services div[class*="bg-"]:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(41, 121, 255, 0.6) !important; /* Blue border on hover */
+    transform: translateY(-5px);
+}
+/* --- FIX: TARGET THE ITEMS INSIDE THE GRID --- */
+
+/* 1. Target the DIRECT CHILDREN of the tech-grid (The 4 Cards) */
+#technology .tech-grid > div, 
+#technology .tech-grid > article,
+#technology .tech-card {
+    /* KILL the Prussian Blue Background */
+    background-color: transparent !important;
+    background: rgba(255, 255, 255, 0.03) !important; /* 3% opacity glass */
+    background-image: none !important;
+    
+    /* Apply Glass Blur */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* Add White Border */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    
+    /* Remove shadow box */
+    box-shadow: none !important;
+    
+    /* Smooth Transition */
+    transition: all 0.3s ease !important;
+}
+
+/* 2. HOVER EFFECT: Green Glow */
+#technology .tech-grid > div:hover,
+#technology .tech-grid > article:hover,
+#technology .tech-card:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #22c55e !important; /* Neon Green */
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
+    transform: translateY(-5px) !important;
+}
+/* --- FIX: MAKE INNER BUTTONS (PILLS) GLASSY --- */
+
+/* 1. Target the specific "tech-pill" class you are using */
+#technology .tech-pill {
+    /* Remove the solid white background */
+    background: rgba(255, 255, 255, 0.1) !important; /* 10% opacity white */
+    
+    /* Change text to White so it matches the theme */
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    
+    /* Add a thin, elegant border */
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    
+    /* smooth transition */
+    transition: all 0.3s ease !important;
+    
+    /* Optional: soft blur inside the button */
+    backdrop-filter: blur(4px);
+}
+
+/* 2. HOVER EFFECT: Make them light up when you touch them */
+#technology .tech-pill:hover {
+    /* Brighter background on hover */
+    background: rgba(255, 255, 255, 0.3) !important;
+    
+    /* Bright white border */
+    border-color: #ffffff !important;
+    
+    /* Small glow */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4) !important;
+    
+    /* Lift up slightly */
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+/* --- FIX: BRIGHTEN SUCCESS STORIES SECTION --- */
+
+/* 1. Target the Case Studies Background Overlay */
+#case-studies::before {
+    /* Remove the black tint so the image is 100% bright */
+    background: rgba(255, 255, 255, 0.1) !important; /* Tiny white tint instead */
+    backdrop-filter: none !important; /* Removes blur if it looks muddy */
+}
+
+/* 2. CHANGE TEXT TO BLACK (Since background is now bright) */
+#case-studies h2, 
+#case-studies p, 
+#case-studies .section-title,
+#case-studies .section-subtitle {
+    /* Solid Black Text */
+    color: #000000 !important;
+    
+    /* Remove the heavy black shadow (it looks dirty on light backgrounds) */
+    text-shadow: none !important;
+    
+    /* Make it bold to stand out */
+    font-weight: 700 !important;
+}
+
+/* 3. Ensure the Button Text is still Black */
+#case-studies .btn,
+#case-studies .btn-primary {
+    color: #000000 !important;
+    font-weight: 800 !important;
+}
+/* --- FIX: MAKE BUTTON TEXT WHITE --- */
+
+/* 1. Target the Button in Case Studies */
+#case-studies .btn,
+#case-studies .btn-primary,
+#case-studies a.btn {
+    /* Set text color to bright White */
+    color: #ffffff !important;
+    
+    /* Make sure it's bold */
+    font-weight: 700 !important;
+    
+    /* Optional: Small shadow to make letters crisp */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 2. HOVER: Keep it white when you touch the button */
+#case-studies .btn:hover,
+#case-studies .btn-primary:hover {
+    color: #ffffff !important;
+}
+/* --- CHANGE ABOUT US / TEAM BACKGROUND --- */
+
+/* 1. Target the 'About' section */
+#about {
+    /* REPLACE 'team-bg.jpg' with your actual image file name */
+    background-image: url('team.jpg') !important;
+    
+    /* Ensure the image covers the full section */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    
+    /* Prepare for the overlay */
+    position: relative !important;
+    z-index: 0 !important;
+    
+    /* Remove any solid colors blocking the image */
+    background-color: transparent !important;
+}
+
+/* 2. ADD DARK OVERLAY (So text stays readable) */
+#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 70% Dark Tint - Perfect for white text */
+    background: rgba(0, 0, 0, 0.7) !important; 
+    
+    z-index: -1; /* Puts the tint BEHIND the text */
+}
+
+/* 3. ENSURE TITLE TEXT IS WHITE */
+#about h2,
+#about h3,
+#about p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
+}
+/* --- FIX: TEAM CARD TRANSPARENT & BLUE CIRCLE --- */
+
+/* 1. Make the Team Card Transparent Glass */
+#about .team-card,
+#about .card {
+    /* FORCE Transparency */
+    background-color: transparent !important;
+    background: rgba(255, 255, 255, 0.05) !important; /* 5% opacity glass */
+    
+    /* Frosted Blur */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* White Border */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    
+    /* Remove dark shadows */
+    box-shadow: none !important;
+}
+
+/* 2. Change the Profile Picture Circle to BLUE */
+#about img, 
+#about .team-photo,
+#about .profile-img {
+    /* Blue Border */
+    border: 3px solid #2979ff !important;
+    
+    /* Blue Glow */
+    box-shadow: 0 0 20px rgba(41, 121, 255, 0.6) !important;
+}
+
+/* 3. HOVER EFFECT: Make the blue glow stronger when touched */
+#about .team-card:hover img {
+    box-shadow: 0 0 30px rgba(41, 121, 255, 0.9) !important;
+    transform: scale(1.05); /* Slight zoom */
 }
