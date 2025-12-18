@@ -1,1694 +1,1258 @@
-html, body {
-    overflow-x: hidden; /* This kills horizontal scrolling */
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+/* --- 1. COLOR VARIABLES --- */
 :root {
-    /* --- DARK TECH PALETTE --- */
-    --bg-dark: #050a14;          /* Almost Black Blue */
-    --card-bg: #0b1a33;          /* Dark Navy for Cards */
-    --primary-blue: #ffffff;     /* White text for Headers (High Contrast) */
-    --text-grey: #b0b8c4;        /* Silver text for paragraphs */
-    
-    --neon-green: #00e676;       /* Brighter Neon Green */
+    --prussian-blue: #003153; 
+    --accent-green: #2E8B57; 
+    --white: #ffffff;
+    --text-dark: #333333;
+    --text-grey: #666666;
+    --hero-highlight: #3b82f6; 
+    --btn-blue: #0066cc; 
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* --- 2. GLOBAL RESET --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Apply the uniform font to the whole site */
-/* Apply the 'Inter' font to everything */
-/* Body Text: Clean and Readable */
-/* UNIFORM FONT: LORA (Elegant & Classy) */
-/* UNIFORM FONT: TIMES NEW ROMAN */
 body {
-    font-family: 'Open Sans', sans-serif;
-    color: #333333;
-    line-height: 1.6;
-    margin: 0;
-    
-    /* IMPORTANT: No background image here anymore */
-    background: transparent; 
-}
-
-/* Headers: Bold and Geometric */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #000000; /* FORCE BLACK TEXT */
-    margin-bottom: 1rem;
-    letter-spacing: normal;
-    font-style: normal;
-    text-transform: none;
-}
-.hero {
-    /* Replace 'background.jpg' with your actual image file name */
-    background: url('background.jpg') no-repeat center center/cover;
-    
-    /* Keeps the image fixed in place while you scroll (Parallax effect) */
-    background-attachment: fixed; 
-    
-    width: 100%;
-    height: 100vh; /* Ensures it covers the full screen height */
-    position: relative;
-    display: flex;
-    align-items: center; /* Centers content vertically */
-    justify-content: center; /* Centers content horizontally */
-}
-/* Reset Buttons & Nav */
-.btn, .nav-links a {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    letter-spacing: normal;
-    text-transform: none;
-}
-
-/* Buttons: Bold and Punchy */
-.btn {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-/* Headers share the same font, just bolder */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #000000; /* FORCE BLACK */
-    margin-bottom: 1rem;
-    letter-spacing: normal;
-    text-transform: none;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
 }
 
-/* Typography */
-h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 1rem; }
-a { text-decoration: none; transition: 0.3s; }
+a { text-decoration: none; }
 
-/* Utilities */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.section-padding { padding: 80px 0; }
-.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 10px rgba(41, 121, 255, 0.3); }
-.section-subtitle {
-    text-align: center;
-    color: #000000; /* Force Black */
-    max-width: 700px;
-    margin: 0 auto 50px auto;
-    font-size: 1.1rem;
-}
-
-/* Buttons */
-.btn { display: inline-block; padding: 12px 30px; border-radius: 50px; font-weight: 600; border: none; cursor: pointer; }
-.btn-primary { 
-    background: var(--neon-green); 
-    color: #000; /* Black text on green button for readability */
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); 
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px rgba(0, 230, 118, 0.6); background: #00ff88; }
-
-.btn-outline {
-    border: 2px solid #000000; /* Black Border */
-    color: #000000;            /* Black Text */
-    background: transparent;
-    margin-left: 10px;
-    font-weight: 700;          /* Make text bold so it's readable */
-}
-.btn-outline:hover {
-    background: #000000;       /* Fill with Black on hover */
-    color: #ffffff;            /* Text turns White */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Subtle black shadow */
-}
-/* Navbar */
+/* --- 3. NAVIGATION BAR --- */
+/* --- GLASSY TRANSPARENT HEADER --- */
 header {
-    /* Completely Invisible Background */
-    background: transparent !important;
-    backdrop-filter: none !important;
+    /* 1. Make background transparent/glassy */
+    background: rgba(255, 255, 255, 0.1); /* 10% opaque white */
+    backdrop-filter: blur(10px);          /* Blurs what's behind it */
+    -webkit-backdrop-filter: blur(10px);  /* Safari support */
     
-    /* No Lines or Shadows */
-    border: none !important;
-    box-shadow: none !important;
+    /* 2. Position it ON TOP of the image */
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it floats above everything */
     
-    /* Float ON TOP of the page content */
-    position: absolute; 
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-.navbar {
+    /* 3. Remove default borders/shadows if you want it cleaner */
+    box-shadow: none; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge */
+
+    /* 4. Layout (Keep existing) */
+    height: 80px;
     display: flex;
-    justify-content: space-between; /* Pushes Logo to left, Links to right */
-    align-items: center;            /* Vertically centers everything */
-    height: 80px;                   /* Enforce a fixed height */
-    width: 100%;
-    flex-wrap: nowrap;              /* PREVENTS them from dropping to a new line */
-}
-.nav-links {
-    display: flex;
-    gap: 30px;        /* Adds space between the words */
     align-items: center;
-    margin-left: auto; /* Pushes links to the right if needed */
+    padding: 0 5%;
 }
-.logo img { height: 45px; filter: brightness(1.2); } /* Makes logo pop */
-/* Navigation Links - Black Text */
-.nav-links a {
-    color: black; /* Changed from white to black for visibility */
-    font-weight: 700; /* Made it slightly bolder to pop more */
-    font-size: 1rem;
+
+/* Optional: Since the header is now floating, you might want to 
+   add some top padding to the Hero so text doesn't hide behind the logo */
+.hero {
+    padding-top: 80px; 
+}
+.logo-container { display: flex; align-items: center; gap: 10px; }
+
+.logo-text { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+.text-blue { color: var(--prussian-blue); }
+.text-green { color: var(--accent-green); }
+nav {
+    /* THIS IS THE KEY FIX: */
+    margin-left: auto; /* Pushes the nav (and button) to the far right */
+    margin-right: 30px; /* Adds space between the Links and the Button */
+}
+
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 30px; /* Space between each link */
+}
+nav a {
+    color: #000000; /* Black text */
+    font-weight: 500;
+    font-size: 0.95rem;
     transition: color 0.3s ease;
 }
-
-/* Keep the Green Hover Effect */
-.nav-links a:hover {
-    color: var(--neon-green); 
+nav a:hover {
+    color: var(--accent-green); /* Green on hover */
 }
-.nav-links a.active {
-    color: var(--neon-green);
-    border-bottom: 2px solid var(--neon-green);
-    padding-bottom: 5px;
+.btn-reach {
+    background-color: #000000; 
+    color: var(--white);
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    /* ensure button doesn't shrink */
+    white-space: nowrap; 
 }
-
-/* Hero Section */
+.btn-reach:hover {
+    background-color: var(--accent-green); 
+}
+/* --- 4. HERO SECTION --- */
+/* --- HERO SECTION --- */
 .hero {
-    /* Replace 'background.jpg' with your actual image file name */
-    background: url('hero-bg.jpg') no-repeat center center/cover;
-    
-    /* Keeps the image fixed in place while you scroll (Parallax effect) */
-    background-attachment: fixed; 
-    
+    position: relative; /* CRITICAL: Holds the video inside this box */
     width: 100%;
-    height: 100vh; /* Ensures it covers the full screen height */
+    height: 100vh;      /* Full screen height */
+    display: flex;      /* Centers the text */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;   /* Crops any video spillover */
+}
+.back-video {
+    position: absolute; /* Takes it out of the flex flow */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures it stretches to fill screen without distorting */
+    z-index: -2;        /* Puts it way behind text */
+}
+.hero-content {
     position: relative;
-    display: flex;
-    align-items: center; /* Centers content vertically */
-    justify-content: center; /* Centers content horizontally */
-}
-.hero h1 {
-    /* Change color from white to black */
-    color: #000000; 
-    
-    font-size: 3.5rem;
-    min-height: 80px;
-    
-    /* Remove the white glow so it looks clean on light background */
-    text-shadow: none; 
-}
-.hero p { font-size: 1.2rem; max-width: 700px; margin: 20px auto 40px auto; color: black; }
-
-/* Typing Cursor Animation */
-.typing-container #typewriter::after { content: '|'; animation: blink 1s infinite; color: var(--neon-green); }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-/* Services (Cards) */
-.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.service-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-    border-color: var(--neon-green);
-}
-.icon-box { font-size: 2rem; color: var(--accent-blue); margin-bottom: 20px; text-shadow: 0 0 10px rgba(41, 121, 255, 0.4); }
-.service-card ul { padding-left: 20px; margin: 15px 0; color: var(--text-grey); }
-.service-card ul li { margin-bottom: 8px; }
-.learn-more { color: var(--neon-green); font-weight: bold; font-size: 0.9rem; }
-
-/* --- UPGRADED TECH STACK (Glass Cards) --- */
-.tech-stack {
-    background: transparent;      /* Ensures the brain image shows through */
-    position: relative;
-    border: none !important;      /* Removes any border lines */
-    box-shadow: none !important;  /* Removes the shadow that looks like a line */
-    padding: 80px 20px;           /* Keeps the spacing correct */
-}
-
-.tech-grid {
-    display: grid;
-    /* This creates a responsive grid of cards */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.tech-column {
-    background: #0b1a33;       /* Prussian Blue Background */
-    border: 1px solid #004a80; /* Subtle border */
-    border-radius: 16px;
-    padding: 30px 20px;
-    transition: all 0.3s ease;
+    z-index: 1;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 49, 83, 0.3); /* Blue shadow */
+    max-width: 900px;
+    
+}
+/* --- TYPEWRITER EFFECT (FIXED) --- */
+.hero h1 {
+    font-size: 3rem; 
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    /* Optional: Ensure H1 text alignment is explicitly center */
+    text-align: center; 
 }
 
-/* Hover Effect */
-.tech-column:hover {
-    transform: translateY(-5px);
-    border-color: #00c853; /* Green border on hover */
+.typewriter {
+    display: inline-block;
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 4px solid var(--hero-highlight); /* The blinking cursor */
+    width: 0;
+    vertical-align: bottom;
+    color: black;
+    
+    /* Steps(38): Matches the approx character count of "Transforming Business with Advanced AI"
+       Duration: 3s
+    */
+    animation: 
+        typing 2s steps(40, end) forwards, 
+        blink 0.75s step-end infinite;
+    
+    animation-delay: 0.2s;
 }
-/* Make the Title Dark Blue */
-.tech-column h4 {
-    color:#00c853; 
-    font-weight: 700;
+
+.highlight { color: var(--hero-highlight); }
+
+.hero p {
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    /* ADDED: Centers the paragraph block itself */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- BUTTONS --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    /* ADDED: Centers the buttons horizontally */
+    justify-content: center; 
+}
+/* --- PRIMARY BUTTON (Get Started) --- */
+.btn-primary {
+    background-color: var(--btn-blue);
+    color: var(--white);
+    padding: 15px 35px;
+    border-radius: 50px; /* Makes it pill-shaped (more modern) */
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    
+    /* The Glow Effect */
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4); 
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.6); /* Stronger glow on hover */
+}
+
+/* --- SECONDARY BUTTON (Explore Services) --- */
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint */
+    backdrop-filter: blur(5px); /* Blurs the circuit lines behind the text */
+    
+    color: #000000; 
+    border: 2px solid #000000; /* Slightly thicker border */
+    
+    padding: 15px 35px;
+    border-radius: 50px; /* Pill-shaped */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    transform: translateY(-3px);
+}
+/* --- ANIMATION KEYFRAMES (FIXED) --- */
+@keyframes typing {
+    from { width: 0; }
+    /* 39ch is the specific width for your sentence in the Inter font.
+       If the cursor is still too far right, lower this number (e.g., 38ch).
+       If the text is cut off (missing "I"), increase this number (e.g., 40ch).
+    */
+    to { width: 30ch; } 
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--hero-highlight); }
+}
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 1024px) {
+    /* Tablet/Laptop adjustments */
+    .hero h1 { font-size: 2.2rem; } /* Shrink font so it fits on smaller screens */
+}
+
+@media (max-width: 768px) {
+    header { padding: 0 20px; }
+    nav ul { display: none; }
+    .hero h1 { font-size: 2rem; }
+    
+    /* Disable typewriter on mobile to prevent layout breaking */
+    .typewriter {
+        width: auto;
+        border-right: none;
+        animation: none;
+        white-space: normal;
+    }
+    
+    .hero-buttons { flex-direction: column; }
+/* --- REACH US BUTTON (Pill Shape) --- */
+.btn-reach {
+    background-color: var(--btn-blue);
+    color: var(--white);
+    
+    /* 1. THIS CONTROLS THE SHAPE */
+    border-radius: 50px; /* Makes it fully rounded like "Get Started" */
+    
+    /* 2. Remove default borders */
+    border: none;
+    
+    padding: 10px 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-reach:hover {
+    transform: translateY(-3px); /* Hover float effect */
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4); /* Glow effect */
+}
+}
+/* --- LOGO SIZE CONTROL --- */
+.logo{
+    height: 40px;  /* Adjust this number to make it bigger/smaller */
+    width: auto;
+}
+/* --- SERVICES SECTION STYLES --- */
+.services-section {
+    padding: 100px 5%;
+    
+    /* 1. PUT YOUR IMAGE FILENAME HERE */
+    background-image: url('servicesimg.jpg'); 
+    
+    /* 2. THE MAGIC SCROLL EFFECT */
+    background-attachment: scroll; /* This makes the image stay still while content scrolls */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Optional: Add a dark tint so the white cards pop out */
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
     margin-bottom: 20px;
 }
 
-/* The Container for the buttons */
+.section-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: whitesmoke;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Grid Layout */
+.services-grid {
+    /* Switch to Flexbox to handle the centering better */
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    justify-content: center; /* CENTERS the items in the last row */
+    gap: 30px; /* Space between cards */
+    
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.service-card {
+    /* 1. Sizing Logic */
+    /* Grow: 1 (fill space), Shrink: 1, Basis: 350px (minimum width) */
+    flex: 1 1 350px; 
+    
+    /* 2. Important: Stop them from getting too wide */
+    /* This ensures the bottom 2 cards don't stretch to fill the whole screen width.
+       They will match the size of the top cards. */
+    max-width: 400px; 
+    
+    /* Dark Glass Styles (Keep your existing visual styles) */
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+/* Hover Effect: Slightly lighter and lifts up */
+/* --- HOVER GLOW EFFECT (Like Reference Image) --- */
+/* --- HOVER EFFECTS: CARD & ICON GLOW --- */
+
+/* 1. The Card Glow (Border + Outer Light) */
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6; 
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); 
+    background: rgba(30, 40, 70, 0.8);
+}
+
+/* 2. The Icon Glow (Triggered when Card is hovered) */
+.service-card:hover .icon-box svg {
+    /* Change icon color to Neon Blue */
+    color: #3b82f6; 
+    
+    /* This creates the "Neon Tube" glow effect on the lines of the SVG */
+    filter: drop-shadow(0 0 8px #3b82f6); 
+    
+    /* Slight pop animation */
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* 2. Remove Old Colored Top Borders */
+.border-blue, .border-purple, .border-green {
+    border-top: none !important;
+}
+
+/* 3. Typography (White and Grey) */
+.service-card h3 {
+    color: #ffffff; /* Pure White Title */
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #b0b0b0; /* Light Grey Description */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+/* 4. Icons (Pure White, No Box) */
+.icon-box {
+    /* Remove old colored box styling */
+    background-color: transparent !important;
+    border: none !important;
+    width: auto;
+    height: auto;
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+/* Make the SVG icon itself white */
+.icon-box svg {
+    width: 32px;
+    height: 32px;
+    color: #ffffff; /* Sets stroke/fill to white */
+    /* Ensure fill is none if using stroke icons */
+    fill: none; 
+}
+
+/* 5. Lists (Simple Dots, Grey Text) */
+.service-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 10px; /* Slight indent */
+    margin-bottom: 30px;
+}
+
+.service-list li {
+    color: #b0b0b0; /* Light grey text */
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px; /* Space for custom dot */
+}
+
+/* Create the custom small dot */
+.service-list li::before {
+    content: ''; /* Empty content for the dot */
+    position: absolute;
+    left: 0;
+    top: 8px; /* Center dot vertically with text */
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff; /* White dot */
+    border-radius: 50%; /* Make it round */
+    
+    /* Remove old checkmark styling */
+    box-shadow: none !important;
+    color: transparent !important;
+    font-size: 0;
+    display: block;
+}
+
+/* 6. Links (Keep Blue) */
+.service-card a {
+    color: #3b82f6; /* Bright Blue like the image */
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto; /* Pushes to bottom */
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transform: translateZ(0); 
+    will-change: transform, backdrop-filter;
+}
+
+.service-card a:hover {
+    gap: 12px; /* Arrow moves on hover */
+    color: #60a5fa; /* Lighter blue */
+}
+/* --- TECHNOLOGY SECTION (Dark Matrix Theme) --- */
+.tech-stack {
+    padding: 100px 5%;
+    min-height: 850px;
+    
+    /* 1. PUT YOUR IMAGE FILENAME HERE */
+    background-image: url('techstack.jpg'); 
+    
+    /* 2. Background Settings */
+    background-size: cover;       /* Fills the whole area */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat;
+    
+    /* 3. Overlay Setup */
+    position: relative; /* Needed for the overlay to sit on top */
+    z-index: 1;         /* Ensures content sits above the overlay */
+    
+    text-align: center;
+}
+.tech-stack::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Adjust the last number (0.85) to control brightness.
+       0.90 = Extremely light (almost white)
+       0.70 = Medium brightness
+       0.50 = Darker
+    */
+    background-color: rgba(255, 255, 255, 0.20); 
+    
+    z-index: 1; /* Sits on top of image, behind text */
+}
+
+/* --- BRING CONTENT TO FRONT --- */
+/* This ensures the Title and Cards sit ON TOP of the white layer */
+.tech-stack > * {
+    position: relative;
+    z-index: 2;
+}
+/* Headers */
+.section-title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.section-subtitle {
+    color: var(--white);
+    margin-bottom: 60px;
+    font-size: 1.1rem;
+}
+
+/* Grid Layout */
+.tech-grid {
+    display: grid;
+    /* Fits 4 cards perfectly */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- THE CARD (tech-column) --- */
+.tech-column {
+    /* Dark Glass Effect */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Subtle Border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Card Title */
+.tech-column h4 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+/* --- ICONS (FontAwesome) --- */
+.tech-icon {
+    font-size: 3rem; /* Controls icon size */
+    color: #ffffff;   /* Default White */
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+/* --- PILLS (Tags) --- */
 .pill-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-}
-.tech-pill {
-    background: #ffffff;       /* White background */
-    color: #0b1a33;            /* Prussian Blue text */
-    border: none;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
-/* Hover Effect */
-.tech-pill:hover {
-    background: #00c853;       /* Turns Green */
-    color: #ffffff;            /* Text White */
-}
-/* Style for the new Icons */
-.tech-icon {
-    font-size: 3rem; /* Big size */
-    color: var(--accent-blue); /* Electric Blue */
-    margin-bottom: 20px;
-    
-    /* Cool Blue Glow Effect */
-    text-shadow: 0 0 20px rgba(41, 121, 255, 0.5);
-    
-    transition: transform 0.3s ease;
-}
-
-/* When you hover the card, the icon floats up */
-.tech-column:hover .tech-icon {
-    transform: translateY(-10px) scale(1.1);
-    color: var(--neon-green); /* Changes to Green on hover! */
-    text-shadow: 0 0 25px rgba(0, 230, 118, 0.6);
-}
-/* Team */
-.team-card { text-align: center; max-width: 400px; margin: 0 auto; background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
-.team-card img {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--neon-green);
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3);
-    padding: 4px;
-    margin-bottom: 20px;
-}
-
-/* Contact */
-.contact-wrapper { 
-    display: flex; flex-wrap: wrap; gap: 50px; 
-    background: var(--card-bg); 
-    padding: 40px; 
-    border-radius: 12px; 
-    border: 1px solid var(--border-color); 
-}
-.contact-form, .contact-info { flex: 1; min-width: 300px; }
-.input-field { 
-    width: 100%; padding: 12px; margin-bottom: 15px; 
-    background: #050a14; /* Very Dark Input */
-    border: 1px solid var(--border-color); 
-    border-radius: 6px; 
-    color: white; 
-}
-.input-field:focus { outline: none; border-color: var(--neon-green); }
-.info-item { display: flex; gap: 15px; margin-bottom: 25px; }
-.info-item i { font-size: 1.2rem; color: var(--neon-green); margin-top: 5px; }
-
-/* Footer */
-footer { background: #02040a; color: white; text-align: center; padding: 30px 0; border-top: 1px solid var(--border-color); }
-.small-text { font-size: 0.75rem; opacity: 0.6; margin-top: 5px; }
-
-/* Scroll Reveal Animation Classes */
-.reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .navbar { flex-direction: column; height: auto; padding: 15px; background: var(--bg-dark); }
-    .nav-links { margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-    .nav-links a { margin: 0; }
-    .contact-wrapper { padding: 20px; }
-}
-/* --- NEW TECH EFFECTS --- */
-
-
-
-/* 2. CRT Scanline Overlay (TV Screen Effect) */
-.scanline {
-    width: 100%;
-    height: 100px;
-    z-index: 999;
-    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 118, 0.04) 50%, rgba(0,0,0,0) 100%);
-    opacity: 0.1;
-    position: fixed;
-    bottom: 100%;
-    left: 0;
-    pointer-events: none;
-    animation: scanline 10s linear infinite;
-}
-
-@keyframes scanline {
-    0% { bottom: 100%; }
-    100% { bottom: -100%; }
-}
-
-/* 3. Holographic Text Effect */
-.typing-container span {
-    background: none;       /* Removes gradient */
-    -webkit-text-fill-color: white; /* Resets text to white */
-    color: white;
-}
-@keyframes shine {
-    to { background-position: 200% center; }
-}
-/* --- SERVICE ICONS: White -> Green on Hover --- */
-
-/* 1. Default State (Clean White) */
-.icon-box i {
-    color: #ffffff !important;       /* Icon is White */
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: none !important;    /* No glow yet */
-    transition: all 0.3s ease;
-}
-
-/* 2. Hover State (Neon Green + Glow) */
-.service-card:hover .icon-box i {
-    color: blue !important;       /* Turns Neon Green */
-    text-shadow: 0 0 20px rgba(0, 200, 83, 0.8) !important; /* Adds Glow */
-    transform: scale(1.1);           /* Pops up slightly */
-}
-
-@keyframes pulse-green {
-    0% { text-shadow: 0 0 0 rgba(0, 230, 118, 0.4); }
-    70% { text-shadow: 0 0 20px rgba(0, 230, 118, 0.8); }
-    100% { text-shadow: 0 0 0 rgba(0, 230, 118, 0.4); }
-}
-/* --- TYPEWRITER + FADE IN COMBO EFFECT --- */
-
-/* 1. Define the fade animation */
-@keyframes subtleFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(10px); /* Optional: A tiny upward float */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 2. Apply it to the container holding the typing text */
-.hero h1.typing-container {
-    /* Start invisible */
-    opacity: 0;
-    
-    /* Run the fade animation over 2.5 seconds. 
-       'forwards' makes sure it stays visible at the end. */
-    animation: subtleFadeIn 2.5s ease-out forwards;
-    
-    /* Ensure the glowing shadow is also part of the fade */
-
-}
-
-/* Ensure the blinking cursor is always visible once it starts */
-.typing-container #typewriter::after {
-    opacity: 1;
-}
-/* --- GENERIC HOVER UP CLASS --- */
-.hover-up {
-    display: inline-block; /* Necessary for transform to work on text */
-    transition: transform 0.3s ease;
-    cursor: default; /* Keeps cursor as a pointer/text selector */
-}
-
-.hover-up:hover {
-    transform: translateY(-5px); /* Moves it up 5 pixels */
-    /* Optional: Add a subtle text glow on hover */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
-}
-/* --- HERO ENTRANCE ANIMATION --- */
-
-/* 1. Define the animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px); /* Start 30px down */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* End in normal position */
-    }
-}
-
-/* 2. Apply to the Paragraph */
-.hero p {
-    opacity: 0; /* Hidden by default */
-    animation: fadeInUp 0.8s ease-out forwards; /* Run animation */
-    animation-delay: 0.5s; /* Wait 0.5s (let the title start typing first) */
-}
-
-/* 3. Apply to the Buttons */
-.hero-buttons {
-    opacity: 0; /* Hidden by default */
-    animation: fadeInUp 0.8s ease-out forwards;
-    animation-delay: 0.8s; /* Wait 0.8s (appears after the text) */
-}
-/* --- PREMIUM FOOTER STYLES --- */
-
-footer {
-    /* KEY CHANGE: Transparent lets the body background show through */
-    background: transparent; 
-    
-    color: black;
-    padding-top: 80px;
-    
-    /* Remove the top border line so it blends perfectly */
-    border-top: none !important; 
-    
-    font-size: 0.95rem;
-}
-
-.footer-top {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 50px;
-    padding-bottom: 60px;
-}
-
-/* Brand Column */
-.footer-logo {
-    display: flex;
-    align-items: center;
     gap: 10px;
-    color: white;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-.footer-logo img { height: 40px; }
-.footer-desc { line-height: 1.6; margin-bottom: 25px; font-size: 0.9rem; opacity: 0.8; }
-
-/* Interactive Social Icons */
-.social-links { display: flex; gap: 15px; }
-.social-links a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.05); /* Glass effect */
-    border-radius: 50%;
-    color: white;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-.social-links a:hover {
-    background: var(--neon-green); /* Turns Green */
-    color: black;
-    transform: translateY(-5px); /* Floats Up */
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.6); /* Glows */
 }
 
-/* --- FIXED HEADER ALIGNMENT --- */
-/* --- CENTERED HEADER UNDERLINE --- */
-
-.footer-col h4 {
-    color: white;
-    margin-bottom: 25px;
-    font-size: 1.1rem;
-    position: relative;
-    display: inline-block; 
-    padding-bottom: 8px; 
-}
-
-/* The Green Underline - Now Centered */
-.footer-col h4::after {
-    content: '';
-    position: absolute;
-    
-    /* 1. Move to the exact middle of the text box */
-    left: 50%;
-    
-    /* 2. Shift it back by half its own width so it looks perfectly centered */
-    transform: translateX(-50%);
-    
-    bottom: 0;
-    width: 40px; 
-    height: 3px; 
-    background: var(--neon-green);
-    border-radius: 2px;
-}
-
-
-/* Interactive Links */
-.footer-links { list-style: none; padding: 0; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a { 
-    color: #b0b8c4; 
-    transition: all 0.3s ease; 
-    display: inline-block;
-}
-.footer-links a:hover {
-    color: var(--neon-green);
-    transform: translateX(8px); /* Slides to the right */
-}
-
-/* --- NEWSLETTER FORM FIX --- */
-.newsletter-form {
-    display: flex;
-    gap: 10px; /* Space between input and button */
-    margin-top: 15px;
-    align-items: center;
-}
-
-/* The Input Field (Email) */
-/* Newsletter Input Fix */
-/* Newsletter Input Fix */
-.newsletter-form input {
-    background: #ffffff;
-    border: 1px solid #cccccc;
-    color: #333333;
-    padding: 10px 15px;
-    border-radius: 4px;
-    
-    /* FIX: Force it to be wide enough */
-    width: 100%; 
-    min-width: 200px; /* Ensures it never gets too small */
-    
+.tech-pill {
+    background: rgba(255, 255, 255, 0.1); /* Glass Grey */
+    color: #cccccc;
+    padding: 8px 16px;
+    border-radius: 8px;
     font-size: 0.9rem;
-}
-/* Fix the Placeholder Text Color */
-.newsletter-form input::placeholder {
-    color: #666666; /* Medium Grey for placeholder text */
-    opacity: 1;     /* Ensures it's fully visible */
-}
-/* The Subscribe Button */
-.newsletter-form button {
-    background: #003153;         /* Prussian Blue */
-    color: #ffffff;              /* White Text */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 700;
-    cursor: pointer;
+    font-weight: 500;
+    border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
-/* Hover Effect */
-.newsletter-form button:hover {
-    background: #00c853;         /* Turns Green */
+/* --- HOVER EFFECTS (Super Bright Neon Green) --- */
+/* --- HOVER EFFECTS (Darker "Matrix" Neon Green) --- */
+
+/* 1. Card Glow */
+.tech-column:hover {
+    /* Deep Neon Green Border */
+    border-color: #00E054; 
+    
+    /* Darker, richer green glow */
+    box-shadow: 0 0 30px rgba(0, 224, 84, 0.4), inset 0 0 10px rgba(0, 224, 84, 0.1);
+    
+    transform: translateY(-5px); 
+    background: rgba(0, 224, 84, 0.03); /* Very subtle dark green tint */
+}
+
+/* 2. Icon Glow */
+.tech-column:hover .tech-icon {
+    /* Pure Green Icon */
+    color: #00E054; 
+    
+    /* A deep green light emitting from the icon */
+    text-shadow: 0 0 15px rgba(0, 224, 84, 0.8); 
+    
+    transform: scale(1.1);
+}
+
+/* 3. Pill Glow */
+.tech-column:hover .tech-pill {
+    background: rgba(0, 224, 84, 0.15); 
+    color: #ffffff; 
+    border-color: #00E054; 
+    box-shadow: 0 0 8px rgba(0, 224, 84, 0.3);
+}
+/* Section Container - Set height here to match Tech Stack */
+.success-stories-section {
+    position: relative;
+    width: 100%;
+    /* Keep this height to match your Tech Stack section */
+    min-height: 850px; 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* BACKGROUND IMAGE CONFIGURATION */
+    background-image: url('success.jpg'); 
+    background-size: cover;   /* Ensures image covers the whole area */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Content Styling */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    
+    /* GLASS EFFECT SETTINGS */
+    background: rgba(255, 255, 255, 0.25); /* Semi-transparent white */
+    backdrop-filter: blur(12px);            /* Blurs the image behind the card */
+    -webkit-backdrop-filter: blur(12px);    /* Safari support */
+    
+    /* Border and Shape */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border */
+    border-radius: 20px;                        /* Rounded corners */
+    padding: 60px 40px;                         /* Spacing inside the card */
+    
+    /* Shadow to lift the card off the background */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transform: translateZ(0); 
+    will-change: transform, backdrop-filter;
+}
+
+.section-title1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color:black; /* Dark text for contrast against light bg */
+    margin-bottom: 1rem;
+}
+
+.section-subtitle2 {
+    font-size: 1.25rem;
+    color: black;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Button Styling */
+.cta-button {
+    display: inline-block;
+    background-color: #003153; /* Prussian Blue */
+    color: #ffffff;
+    padding: 15px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 49, 83, 0.3);
+}
+
+.cta-button:hover {
+    background-color: #004a7c; /* Slightly lighter blue on hover */
     transform: translateY(-2px);
 }
-
-/* Footer Bottom Strip */
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 30px 0;
+.about-us-section {
+    position: relative;
+    width: 100%;
+    /* Consistent height with other sections */
+    min-height: 850px; 
+    
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    font-size: 0.85rem;
-    color: #666;
+    align-items: center;
+    justify-content: center;
+    
+    /* BACKGROUND IMAGE SETUP */
+    background-image: url('team.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Keeps the background fixed while scrolling (Parallax effect) */
+    background-attachment: scroll;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px;
 }
-.legal-links a { color: #666; margin-left: 20px; transition: 0.3s; }
-.legal-links a:hover { color: var(--neon-green); }
 
-/* Mobile Stack */
-@media (max-width: 768px) {
-    .footer-bottom { flex-direction: column; text-align: center; gap: 15px; }
-    .legal-links a { margin: 0 10px; }
+/* Dark Overlay: This adds a dark Prussian Blue tint over your image 
+   so the white text and glowing green elements pop out. */
+.about-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Adjust opacity (0.85) if you want to see more of your image */
+    background-color: rgba(0, 31, 63, 0.85); 
+    z-index: 1;
 }
-/* --- TEAM SOCIAL ICONS --- */
-.team-socials {
-    margin-top: 20px;
+
+/* Container to ensure content sits above the overlay */
+.about-us-section .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.section-title2 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+}
+
+/* The Team Card - Glass Effect */
+/* The Upgraded Premium Glass Card */
+/* --- THE GLASS CARD --- */
+.team-card {
+    /* Dark semi-transparent blue base */
+    background: rgba(0, 31, 63, 0.5); 
+    
+    /* Surface Reflection Gradient */
+    background-image: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.01) 100%
+    );
+    
+    /* Strong Blur for the "Frosted" look */
+    backdrop-filter: blur(20px);         
+    -webkit-backdrop-filter: blur(20px); 
+    
+    /* Subtle White/Blue Border */
+    border: 1px solid rgba(100, 181, 246, 0.2); 
+    border-top: 1px solid rgba(100, 181, 246, 0.4); 
+    
+    border-radius: 24px;
+    padding: 60px 40px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    
+    /* Initial Shadow */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transform: translateZ(0); 
+    will-change: transform, backdrop-filter;
+}
+
+/* --- HOVER EFFECT --- */
+.team-card:hover {
+    transform: translateY(-10px);
+    /* Outer Blue Glow on Hover */
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5), 
+        0 0 30px rgba(0, 123, 255, 0.3); 
+    border-color: rgba(0, 123, 255, 0.5); /* Blue Border on Hover */
+}
+
+/* --- PROFILE IMAGE CIRCLE (The Key Feature) --- */
+.profile-img-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    padding: 5px;
+    
+    /* SOLID ELECTRIC BLUE GRADIENT RING */
+    background: linear-gradient(180deg, #007bff, #00c6ff); 
+    
+    /* PERMANENT BLUE GLOW */
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.6); 
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Dark border to separate image from the glowing ring */
+    border: 3px solid #001f3f; 
+    background-color: #fff;
+}
+
+/* Typography */
+.member-name {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.member-bio {
+    color: #e0e6ed; 
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Social Icons */
+.social-links {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.team-socials a {
-    color: #b0b8c4; /* Light Grey by default */
-    font-size: 1.4rem;
+.social-icon {
+    color: #ffffff;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
 }
 
-.team-socials a:hover {
-    color: var(--neon-green); /* Glows Green on Hover */
-    transform: translateY(-3px); /* Floats up slightly */
+/* Icons turn Neon Blue on Hover */
+.social-icon:hover {
+    color: #00c6ff; 
+    transform: translateY(-3px);
+    text-shadow: 0 0 15px rgba(0, 198, 255, 0.8);
 }
-/* --- TEAM PHOTO STYLES --- */
-.team-photo {
-    width: 120px;            /* Set a fixed width */
-    height: 120px;           /* Same height ensures a perfect circle */
-    border-radius: 50%;      /* This cuts the square image into a circle */
-    object-fit: cover;       /* Ensures the face isn't stretched or squished */
-    
-    /* Centering and Spacing */
-    display: block;
-    margin: 0 auto 20px auto; /* Top:0, Right:Auto, Bottom:20px, Left:Auto */
-    
-    /* Neon Theme Border */
-    border: 3px solid var(--neon-green);
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3); /* Subtle green glow */
-}
-/* --- "LIVE" ANIMATIONS --- */
-
-/* 1. Make the Title "Breathe" (Glow Pulse) */
-.hero h1 {
-    /* No animation, just a steady cool glow */
-    color: black;
-    text-shadow: 0 0 20px rgba(41, 121, 255, 0.5); 
-}
-
-@keyframes glowPulse {
-    0% { text-shadow: 0 0 20px rgba(41, 121, 255, 0.4); }
-    50% { text-shadow: 0 0 50px rgba(41, 121, 255, 0.9), 0 0 20px rgba(41, 121, 255, 0.5); }
-    100% { text-shadow: 0 0 20px rgba(41, 121, 255, 0.4); }
-}
-
-/* 2. Make the Buttons "Levitate" (Float Up and Down) */
-/* --- BUTTONS ENTRANCE ANIMATION --- */
-
-.hero-buttons {
-    opacity: 0; /* Start invisible */
-    
-    /* Run the "Fade In Up" animation */
-    animation: fadeInUp 0.8s ease-out forwards; 
-    
-    /* Wait 1.0s before starting (so they appear AFTER the text) */
-    animation-delay: 1.0s; 
-    
-    margin-top: 30px;
+.contact-section {
     position: relative;
-    z-index: 10;
+    width: 100%;
+    min-height: 850px; 
+    
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 15px;
-}
-/* Button Hover Animation */
-.btn {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-5px); /* Moves up 5px when you touch it */
-    box-shadow: 0 10px 20px rgba(0, 230, 118, 0.4); /* Adds a nice glow */
-}
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); } 
-    100% { transform: translateY(0px); }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); } /* Moves up 10px */
-    100% { transform: translateY(0px); }
-}
-
-/* 3. The "Energy Sweep" (Light moving across screen) */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%; /* Start off-screen left */
-    width: 50%;
-    height: 100%;
-    /* A faint diagonal beam of light */
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transform: skewX(-25deg);
-    pointer-events: none; /* Let clicks pass through */
-    animation: shine 8s infinite; /* Runs every 8 seconds */
-}
-
-@keyframes shine {
-    0% { left: -100%; }
-    20% { left: 200%; } /* Fast sweep across */
-    100% { left: 200%; } /* Pause before restarting */
-}
-/* --- LIVE DATA STREAM EFFECT --- */
-
-
-/* IMPORTANT: Ensure text sits ON TOP of the moving dots */
-.hero, .navbar, .services, #technology, #case-studies, #about, #contact, footer {
-    position: relative;
-    z-index: 2; 
-}
-/* --- BLUE HIGHLIGHT TEXT --- */
-.highlight-blue {
-    color: #2979ff; /* The Bright Blue from your image */
-    text-shadow: 0 0 25px rgba(41, 121, 255, 0.6); /* Adds a subtle glowing pop */
-    font-weight: 700;
-}
-/* --- GLOBAL VIDEO STYLES --- */
-/* --- GLOBAL VIDEO SETTINGS --- */
-
-/* 1. Reset Body Background */
-/* --- FIX FLICKERING --- */
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    color: var(--text-grey);
-    line-height: 1.6;
-    margin: 0;
     
-    /* SAFETY COLOR: This exact Dark Blue matches your theme. 
-       If the video blinks, the user sees this color, not black. */
-    background-color: #050a14; 
-}
-
-/* --- FORCE HERO TEXT BLACK (The "Nuclear" Fix) --- */
-
-.hero h1, 
-.typing-container, 
-.typing-container span, 
-#typewriter {
-    /* 1. Set Color to Black */
-    color: #000000 !important;
-    
-    /* 2. Remove the Holographic/Gradient Effect */
-    background: none !important;
-    -webkit-text-fill-color: #000000 !important; /* This is what was blocking the change! */
-    
-    /* 3. Remove the Glow */
-    text-shadow: none !important;
-}
-/* --- FORCE EXPLORE BUTTON BLACK --- */
-.btn-outline {
-    border: 2px solid #000000 !important; /* Force Black Border */
-    color: #000000 !important;            /* Force Black Text */
-}
-
-/* Hover State */
-.btn-outline:hover {
-    background: #000000 !important;       /* Force Black Background */
-    color: #ffffff !important;            /* Force White Text */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
-}
-/* Change Main Section Heading to Black */
-.section-title {
-    color: black !important; /* Force black color */
-}
-
-/* Change Card Headings to Black by Default */
-.tech-card h3 {
-    color: black !important; /* Force black color */
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-#case-studies p {
-    color: #000000 !important;
-}
-/* --- HYBRID THEME TEXT COLORS --- */
-
-/* 1. MAIN PAGE TEXT -> BLACK (For the White Background) */
-body, 
-h1, h2, h3, h4, h5, h6, 
-p, 
-.section-title, 
-.section-subtitle, 
-.nav-links a, 
-footer, footer h4, footer a, footer p {
-    color: #000000 !important; /* Forces visible text on white bg */
-    text-shadow: none !important;
-}
-
-/* 2. CARD TEXT -> WHITE (For the Prussian Blue Cards) */
-/* This protects the text inside the cards so it stays readable */
-.service-card, 
-.service-card h3, 
-.service-card p, 
-.service-card ul, 
-.service-card li,
-.tech-column, 
-.tech-column h4 {
-    color: #ffffff !important; /* Force White text inside cards */
-}
-
-/* 3. BUTTON TEXT (Get Started) -> WHITE */
-.btn-primary {
-    color: #ffffff !important;
-}
-/* --- FIX TEAM CARD TEXT (Make it White) --- */
-.team-card h3, 
-.team-card p {
-    color: #ffffff !important; /* Force White Text inside the Team Card */
-}
-
-/* Also fix the social icons in the team card */
-.team-socials a {
-    color: #b0b8c4 !important; /* Light Grey Icons */
-}
-.team-socials a:hover {
-    color: #00c853 !important; /* Green Hover */
-}
-/* --- FIX CONTACT INFO VISIBILITY --- */
-
-/* This targets the Address, Email, Phone text inside the dark card */
-.contact-info h4, 
-.contact-info p, 
-.contact-info span,
-.info-item div span {
-    color: #ffffff !important; /* Force White Text */
-}
-
-/* Also make the small labels (Monday-Friday) a light grey so they aren't too bright */
-.info-item div span:first-child {
-    color: #cccccc !important; /* Light Grey for labels */
-}
-/* --- FIX CONTACT CARD VISIBILITY --- */
-
-/* 1. Make the Headings (Address, Email, Phone) Green or White */
-.info-item h5 {
-    color: #00c853 !important; /* Neon Green Title */
-    font-weight: 700;
-}
-
-/* 2. Make the Values (The actual address, numbers) White */
-.info-item p, 
-.info-item span, 
-.info-item a {
-    color: #ffffff !important; /* White Text */
-    opacity: 0.9;
-}
-
-/* 3. Make sure the links (like email) are white too */
-.contact-info a {
-    text-decoration: none;
-}
-/* --- FORCE NAV LINKS GREEN ON HOVER --- */
-.nav-links a:hover {
-    color: #00c853 !important; /* Neon Green */
-    text-shadow: 0 0 10px rgba(0, 200, 83, 0.4); /* Subtle Glow */
-}
-
-/* Also ensure the "Active" link (current page) stays green */
-.nav-links a.active {
-    color: #00c853 !important;
-    border-bottom: 2px solid #00c853 !important;
-}
-/* --- MAKE HERO TITLE PROMINENT --- */
-.hero h1, 
-.typing-container, 
-#typewriter, 
-.highlight-blue {
-    color: #000000 !important;          /* Pure Black */
-    font-weight: 900 !important;        /* Extra Thick/Bold */
-    font-size: 4rem !important;         /* Make it Bigger */
-    letter-spacing: -1px !important;    /* Tighten letters for impact */
-    
-    /* Remove all transparency/glows */
-    background: none !important;
-    -webkit-text-fill-color: #000000 !important;
-    text-shadow: none !important;
-    opacity: 1 !important;
-}
-
-/* Ensure the second line (if wrapped) is also close and tight */
-.hero h1 {
-    line-height: 1.2 !important;
-}
-/* --- MAKE HEADINGS PROMINENT (BLACK) --- */
-
-/* 1. The Main Section Title (Our Technology Stack) */
-.section-title {
-    color: #000000 !important;       /* Pitch Black */
-    text-shadow: none !important;    /* Remove the blurry glow */
-    font-weight: 800 !important;     /* Extra Bold */
-}
-
-/* 2. The Subtitle (Built on robust...) */
-.section-subtitle {
-    color: #000000 !important;       /* Dark Grey for readability */
-    font-weight: 800 !important;     /* Make it slightly bolder */
-    opacity: 1 !important;           /* Ensure it's not faded */
-}
-/* 1. Force the container to be a normal block, NOT flexbox */
-.hero-content, 
-.hero h1 {
-    display: block !important;       /* This fixes the scattering */
-    text-align: center !important;   /* Centers the text lines */
-    max-width: 900px !important;     /* Limits width so it breaks nicely */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    
-    /* Font Settings */
-    font-size: 3.5rem !important;    /* Good size, not too huge */
-    line-height: 1.2 !important;     /* Keeps lines close together */
-    font-weight: 800 !important;
-    color: #000000 !important;
-}
-
-/* 2. Make sure the typing part stays on the same line */
-.typing-container, 
-#typewriter {
-    display: inline !important;      /* Keeps it in the sentence flow */
-    color: #000000 !important;
-}
-
-/* 3. Add a small margin to the bottom of the text */
-.hero h1 {
-    margin-bottom: 30px !important;
-}
-/* --- CENTER HERO SUBTITLE --- */
-.hero p {
-    text-align: center !important;     /* Forces text to center */
-    margin-left: auto !important;      /* Pushes to middle */
-    margin-right: auto !important;     /* Pushes to middle */
-    display: block !important;         /* Prevents scattering */
-    
-    /* Layout & Size */
-    width: 100% !important;
-    max-width: 800px !important;       /* Keeps lines readable */
-    margin-top: 20px !important;       /* Space between Title and Text */
-    
-    /* Visibility */
-    color: #333333 !important;         /* Dark Grey for readability */
-    font-size: 1.2rem !important;
-    font-weight: 500 !important;
-}
-/* --- FORCE ADVANCED AI BLUE --- */
-.highlight-blue {
-    color: #003153 !important;             /* Prussian Blue */
-    -webkit-text-fill-color: #003153 !important; /* Override gradients */
-    font-weight: inherit !important;       /* Keep the boldness */
-}
-
-/* Ensure the blinking cursor is also blue */
-.cursor, .typed-cursor, #typewriter::after {
-    color: #003153 !important;
-}
-#services {
-    /* 1. REPLACE 'your-image.jpg' with the actual filename of your image */
-    background-image: url('servicesimg.jpg');
-
-    /* 2. Ensures the image covers the whole section */
+    /* BACKGROUND IMAGE SETUP */
+    background-image: url('reachushere.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    /* 3. FIX: Your title "Our Services" is currently hard to read (black on dark). 
-       This turns it white. */
-    color: #ffffff; 
+    /* Parallax effect (image stays still while scrolling) */
+    background-attachment: scroll; 
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 60px 20px;
 }
 
-/* Optional: Adds a dark overlay so text stays readable on top of any image */
-#services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    text-transform: capitalize;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Adjust 0.7 to make it darker/lighter */
-    z-index: 1;
-}
-
-/* Ensures content sits above the dark overlay */
-#services .container, #services h2, #services .service-card {
-    position: relative;
-    z-index: 2;
-}
-/* --- FIX TEXT COLOR FOR SERVICES SECTION --- */
-
-/* 1. Makes the main "Our Services" title white */
-#services h2 {
-    color: #ffffff;
-}
-
-/* 2. Makes the subtitle ("Comprehensive AI solutions...") white */
-#services p {
-    color: #ffffff;
-    opacity: 0.9; /* Optional: Makes it slightly softer than the title */
-}
-#services h2, 
-#services p {
-    color: #ffffff !important;
-}
-.service-card {
-    /* Semi-transparent lighter background */
-    background: rgba(255, 255, 255, 0.05) !important;
+    margin: 0 auto;
     
-    /* The blur effect behind the card */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* 1. High Transparency (0.25) so background image shows through */
+    background: rgba(0, 31, 63, 0.25); 
     
-    /* A thin white border to define the edges */
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* 2. Gradient Sheen (Subtle reflection) */
+    background-image: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.01) 100%
+        
+    );
     
-    /* Soft shadow to lift it up */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-/* --- PREMIUM CARD STYLING --- */
-
-.service-card {
-    /* 1. Glassy Background: Dark but slightly transparent */
-    background: rgba(17, 25, 40, 0.75) !important;
+    /* 3. Strong Blur to frost the background image behind it */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     
-    /* 2. The Blur Effect: Blurs the background lines behind the card */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* 4. Glass Borders */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
     
-    /* 3. The Border: A thin, crisp line to define the edges */
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* 5. Soft Shadow to lift it slightly */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     
-    /* 4. Rounded Corners & Spacing */
-    border-radius: 16px;
-    padding: 30px;
-    
-    /* 5. Smooth Animation for Hover */
-    transition: all 0.3s ease;
-    
-    /* 6. Deep Shadow to lift it off the background */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    transform: translateZ(0); 
+    will-change: transform, backdrop-filter;
+}
+.contact-wrapper:hover {
+    transform: translateY(-5px); /* Gentle float on hover */
 }
 
-/* HOVER EFFECT: Makes the card glow when you touch it */
-.service-card:hover {
-    transform: translateY(-7px); /* Moves up */
-    border-color: rgba(16, 185, 129, 0.6); /* Green border glow */
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); /* Green glow behind */
+/* --- LEFT COLUMN: FORM --- */
+.form-column {
+    flex: 1;
+    min-width: 350px;
+    padding: 50px 40px;
+    /* Light divider line */
+    border-right: 1px solid rgba(255, 255, 255, 0.08); 
+}
+.form-group {
+    margin-bottom: 25px;
 }
 
-/* INTERIOR TEXT STYLING */
-.service-card h3 {
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.service-card p {
-    color: #cbd5e1; /* Light grey for description */
-    line-height: 1.6;
-}
-
-.service-card ul li {
-    color: #94a3b8; /* Slightly darker grey for list items */
-    margin-bottom: 8px;
-}
-/* --- ICON HOVER: WHITE TO BLUE --- */
-
-/* 1. Default State: Icons are White */
-.service-card i, 
-.service-card svg {
-    color: #ffffff !important; /* Force white by default */
-    transition: all 0.3s ease; /* Smooth transition */
-}
-
-/* 2. Hover State: Icons turn Blue when card is hovered */
-.service-card:hover i, 
-.service-card:hover svg {
-    /* Change this HEX code if you want a different shade of blue */
-    color: #2979ff !important; /* Bright Tech Blue */
-    
-    /* Optional: Adds a blue glow around the icon */
-    filter: drop-shadow(0 0 12px rgba(41, 121, 255, 0.8)) !important;
-    
-    /* Slight zoom for effect */
-    transform: scale(1.1);
-}
-/* --- LEARN MORE LINK: GREEN TO BLUE --- */
-
-/* 1. Default State: Changes text from Green to Blue */
-.service-card a {
-    color: #2979ff !important; /* Matches your new Blue icons */
-    text-decoration: none;      /* Removes underline if present */
-    transition: all 0.3s ease;
-}
-
-/* 2. Hover State: Makes the link glow bright cyan when hovered */
-.service-card a:hover {
-    color: #00e1ff !important; /* Brighter glowing blue */
-    text-shadow: 0 0 8px rgba(0, 225, 255, 0.6); /* Glow effect */
-    letter-spacing: 0.5px; /* Slight expansion for a premium feel */
-}
-/* Change the card border glow from Green to Blue */
-.service-card:hover {
-    border-color: rgba(41, 121, 255, 0.6) !important;
-    box-shadow: 0 0 20px rgba(41, 121, 255, 0.2) !important;
-}
-/* --- ICON HOVER EFFECT: GLOWING BLUE --- */
-
-/* 1. Ensure icons are white by default with smooth animation */
-.service-card i, 
-.service-card svg {
-    color: #ffffff;
-    transition: all 0.3s ease;
-}
-
-/* 2. When hovering the CARD, turn the ICON blue */
-.service-card:hover i, 
-.service-card:hover svg {
-    /* The Blue Color */
-    color: #0088ff !important; 
-    
-    /* The Blue Glow Shadow */
-    filter: drop-shadow(0 0 12px rgba(0, 136, 255, 0.8)) !important;
-    
-    /* Optional: Makes the icon pop out slightly */
-    transform: scale(1.1);
-}
-/* --- CENTER THE BOTTOM CARDS --- */
-
-/* 1. This targets any div inside #services that is acting as a grid/row */
-#services div[class*="grid"], 
-#services .row, 
-#services .container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    
-    /* Optional: Ensure the gap between cards stays consistent */
-    gap: 2rem !important; 
-}
-
-/* 2. Safety check: Ensures the cards don't stretch too wide */
-.service-card {
-    /* Prevents the last 2 cards from becoming giant */
-    flex: 0 1 auto !important; 
-    width: 350px; /* Adjust this number to match your preferred card size */
-    max-width: 100%;
-}
-/* --- FIX: RE-ALIGN TITLE & TEXT --- */
-
-/* 1. Force the Title and Text to take full width (so they stack) */
-#services h2, 
-#services p {
-    width: 100% !important;       /* Forces them to fill the row */
-    text-align: center !important; /* Centers the text */
-    display: block !important;     /* Ensures they behave like blocks */
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-/* 2. Ensure the main container wraps content correctly */
-#services .container {
-    display: flex !important;
-    flex-wrap: wrap !important;    /* Allows items to drop to new lines */
-    justify-content: center !important;
-    flex-direction: row !important; /* Keeps standard flow */
-}
-
-/* 3. Ensure the Grid of cards takes full width below the text */
-#services div[class*="grid"] {
-    width: 100% !important;
-    justify-content: center !important;
-}
-/* --- FIX: REMOVE DARK OVERLAY (Show Original Image) --- */
-
-/* 1. Hide the dark layer that sits on top */
-#technology::before {
-    display: none !important;
-    background: none !important;
-}
-
-/* 2. Ensure the background is just the pure image */
-#technology {
-    /* Replace 'your-image.jpg' with your file name */
-    background-image: url('techimg.jpg') !important;
-    
-    /* Ensure no dark colors are mixing with the image */
-    background-color: transparent !important;
-    background-blend-mode: normal !important;
-}
-
-/* 3. (Optional) Add a text shadow so white text is still readable on bright images */
-#technology h2, 
-#technology p, 
-#technology h3 {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-/* --- TECHNOLOGY CARDS: GLASS EFFECT --- */
-
-/* 1. Target the cards inside the technology section */
-#technology div[class*="bg-"], /* Targets the dark background cards */
-#technology .card {
-    /* Make the background dark but see-through (60% opacity) */
-    background: rgba(15, 23, 42, 0.6) !important;
-    
-    /* The "Frosted" Blur Effect */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    
-    /* Add a subtle white border */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    
-    /* Soft shadow for depth */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
-    
-    /* Smooth hover animation */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-/* 2. Hover Effect: Floats up and border gets brighter */
-#technology div[class*="bg-"]:hover,
-#technology .card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    background: rgba(15, 23, 42, 0.7) !important;
-}
-
-/* 3. FIX: Ensure the small white buttons (OpenAI, Python, etc.) stay solid */
-#technology button, 
-#technology .badge, 
-#technology span[class*="bg-white"] {
-    opacity: 1 !important;
-    backdrop-filter: none !important;
-    background-color: #ffffff !important; /* Keep them bright white */
-    color: #000000 !important; /* Keep text black */
-}
-/* --- TECHNOLOGY CARDS: WHITE FROSTED GLASS --- */
-
-/* 1. Target the cards to make them White Glass */
-#technology div[class*="bg-"], 
-#technology .card {
-    /* The Magic: White with low opacity (10%) */
-    background: rgba(255, 255, 255, 0.1) !important;
-    
-    /* Strong blur for that "Milky" look */
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    
-    /* A crisp, semi-bright white border */
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    
-    /* Soft shadow */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
-    
-    /* Smooth animation */
-    transition: all 0.3s ease;
-}
-
-/* 2. HOVER: Make it glow whiter when touched */
-#technology div[class*="bg-"]:hover,
-#technology .card:hover {
-    /* Lighten the glass to 20% opacity */
-    background: rgba(255, 255, 255, 0.2) !important;
-    
-    /* Bright white border glow */
-    border-color: rgba(255, 255, 255, 0.8) !important;
-    
-    /* Lift effect */
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
-}
-
-/* 3. ENSURE TEXT IS READABLE */
-/* Since the card is now light glass, we ensure the Title Text stands out */
-#technology h3, 
-#technology h4 {
-    color: #ffffff !important;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Adds shadow to text so it pops */
-}
-
-/* 3. IMPORTANT: Ensure text is readable on the clear background */
-#technology h3, 
-#technology h4, 
-#technology p {
-    color: #ffffff !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* Adds a shadow to text so it pops */
-}
-#technology {
-    /* Forces the image to fit exactly within the width and height */
-    background-size: 100% 100% !important;
-    
-    /* Ensures it doesn't repeat */
-    background-repeat: no-repeat !important;
-    background-position: center center !important;
-}
-/* --- FIX: TECHNOLOGY TITLE COLOR --- */
-
-/* 1. Target the main "Our Technology Stack" Title */
-#technology h2 {
-    color: #ffffff !important;       /* Forces text to White */
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important; /* Adds shadow for contrast */
-}
-
-/* 2. Target the subtitle ("Built on robust, scalable...") */
-#technology p {
-    color: #e2e8f0 !important;       /* Off-white for the subtitle */
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
-    font-weight: 500;
-}
-/* --- SUCCESS STORIES / CASE STUDIES BACKGROUND --- */
-
-/* 1. Target the section using the ID found in your HTML */
-#case-studies {
-    /* REPLACE 'your-image-name.jpg' with the actual file name */
-    background-image: url('technology.jpg') !important;
-    
-    /* Ensures the image covers the full area */
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    
-    /* Prepares the section for the dark overlay */
-    position: relative;
-    z-index: 0;
-    
-    /* Removes the inline 'background: transparent' from HTML */
-    background-color: #000 !important; 
-}
-
-/* 2. THE DARK OVERLAY (Crucial for reading text) */
-#case-studies::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.form-input {
     width: 100%;
-    height: 100%;
-    
-    /* Adds a 70% black layer on top of the image */
-    background: rgba(0, 0, 0, 0.7); 
-    z-index: -1; /* Puts it BEHIND text but IN FRONT of image */
+    /* Very see-through dark tint */
+    background: rgba(0, 0, 0, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-/* 3. FIX TEXT COLORS */
-#case-studies h2, 
-#case-studies p {
-    color: #ffffff !important;
-    position: relative;
-    z-index: 2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Shadow makes text pop */
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
-/* --- FIX: MAKE IMAGE BRIGHTER (Reduce Overlay) --- */
-
-/* 1. Target the Title and Paragraphs in Case Studies */
-#case-studies h2, 
-#case-studies p,
-#case-studies li {
-    /* Change text to Deep Navy/Black */
-    color: #020617 !important; 
-    
-    /* Make text slightly bolder so it stands out against the image */
-    font-weight: 1000 !important;
-    
+.form-input:focus {
+    /* On focus, they become slightly more solid/readable */
+    background: rgba(0, 0, 0, 0.4); 
+    border-color: #00ff7f; /* Green Focus Border */
+    box-shadow: 0 0 10px rgba(0, 255, 127, 0.1);
 }
-
-/* 2. Optional: If you have a subtitle that needs to be slightly lighter */
-#case-studies p {
-    color: #1e293b !important; /* Dark Slate Gray */
-    font-weight: 600 !important;
-}
-/* --- FIX: CHANGE BUTTON TEXT TO BLACK --- */
-
-/* 1. Target the button specifically in the Case Studies section */
-#case-studies .btn,
-#case-studies .btn-primary {
-    /* Change text color to solid black */
-    color: #000000 !important;
-    
-    /* Make it bold so it is super easy to read */
-    font-weight: 800 !important;
-    
-    /* Remove any text shadow that might make it look muddy */
-    text-shadow: none !important;
-}
-
-/* 2. HOVER STATE: Keep it black (or turn dark gray) when you touch it */
-#case-studies .btn:hover,
-#case-studies .btn-primary:hover {
-    color: #000000 !important; /* Keeps it black */
-    background-color: #22c55e !important; /* Keeps the button bright green */
-    
-    /* Optional: Adds a slight lift effect */
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.6);
-}
-/* --- FIX: BUTTON COLOR TO PRUSSIAN BLUE --- */
-
-/* 1. Target the button in the Case Studies section */
-#case-studies .btn,
-#case-studies .btn-primary {
-    /* Prussian Blue Background */
-    background-color: #003153 !important; 
-    border-color: #003153 !important;
-    
-    /* Text must be WHITE to be readable on dark blue */
-    color: #ffffff !important; 
-    
-    /* Matching Blue Glow */
-    box-shadow: 0 0 15px rgba(0, 49, 83, 0.7) !important;
-}
-
-/* 2. HOVER EFFECT: Make it slightly brighter when touched */
-#case-studies .btn:hover,
-#case-studies .btn-primary:hover {
-    /* Lighter Blue */
-    background-color: #00416A !important; 
-    color: #ffffff !important;
-    
-    /* Stronger Glow */
-    box-shadow: 0 5px 20px rgba(0, 75, 120, 0.8) !important;
-    transform: translateY(-2px);
-}
-/* --- FORCE TRANSPARENT GLASS (Nuclear Option) --- */
-
-/* 1. Target ANY card-like box inside the Services section */
-#services .service-card, 
-#services .card, 
-#services div[class*="bg-gray"],   /* Catches Tailwind gray backgrounds */
-#services div[class*="bg-slate"],  /* Catches Tailwind slate backgrounds */
-#services div[class*="bg-zinc"] {
-    /* FORCE the background to be see-through */
-    background-color: transparent !important;
-    background: rgba(255, 255, 255, 0.03) !important; /* 3% opacity white */
-    
-    /* Apply the Blur */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    
-    /* Keep the Border */
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    
-    /* Remove any solid colors/gradients interfering */
-    background-image: none !important;
-}
-
-/* 2. HOVER: Slight glow but keep it transparent */
-#services .service-card:hover,
-#services .card:hover,
-#services div[class*="bg-"]:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(41, 121, 255, 0.6) !important; /* Blue border on hover */
-    transform: translateY(-5px);
-}
-/* --- FIX: TARGET THE ITEMS INSIDE THE GRID --- */
-
-/* 1. Target the DIRECT CHILDREN of the tech-grid (The 4 Cards) */
-#technology .tech-grid > div, 
-#technology .tech-grid > article,
-#technology .tech-card {
-    /* KILL the Prussian Blue Background */
-    background-color: transparent !important;
-    background: rgba(255, 255, 255, 0.03) !important; /* 3% opacity glass */
-    background-image: none !important;
-    
-    /* Apply Glass Blur */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    
-    /* Add White Border */
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    
-    /* Remove shadow box */
-    box-shadow: none !important;
-    
-    /* Smooth Transition */
-    transition: all 0.3s ease !important;
-}
-
-/* 2. HOVER EFFECT: Green Glow */
-#technology .tech-grid > div:hover,
-#technology .tech-grid > article:hover,
-#technology .tech-card:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: #22c55e !important; /* Neon Green */
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
-    transform: translateY(-5px) !important;
-}
-/* --- FIX: MAKE INNER BUTTONS (PILLS) GLASSY --- */
-
-/* 1. Target the specific "tech-pill" class you are using */
-#technology .tech-pill {
-    /* Remove the solid white background */
-    background: rgba(255, 255, 255, 0.1) !important; /* 10% opacity white */
-    
-    /* Change text to White so it matches the theme */
-    color: #ffffff !important;
-    font-weight: 500 !important;
-    
-    /* Add a thin, elegant border */
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    
-    /* smooth transition */
-    transition: all 0.3s ease !important;
-    
-    /* Optional: soft blur inside the button */
-    backdrop-filter: blur(4px);
-}
-
-/* 2. HOVER EFFECT: Make them light up when you touch them */
-#technology .tech-pill:hover {
-    /* Brighter background on hover */
-    background: rgba(255, 255, 255, 0.3) !important;
-    
-    /* Bright white border */
-    border-color: #ffffff !important;
-    
-    /* Small glow */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4) !important;
-    
-    /* Lift up slightly */
-    transform: translateY(-2px);
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    /* Bright Green Gradient */
+    background: linear-gradient(90deg, #00ff7f, #00c853); 
+    color: #001f3f;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-/* --- FIX: BRIGHTEN SUCCESS STORIES SECTION --- */
-
-/* 1. Target the Case Studies Background Overlay */
-#case-studies::before {
-    /* Remove the black tint so the image is 100% bright */
-    background: rgba(255, 255, 255, 0.1) !important; /* Tiny white tint instead */
-    backdrop-filter: none !important; /* Removes blur if it looks muddy */
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 127, 0.5);
 }
 
-/* 2. CHANGE TEXT TO BLACK (Since background is now bright) */
-#case-studies h2, 
-#case-studies p, 
-#case-studies .section-title,
-#case-studies .section-subtitle {
-    /* Solid Black Text */
-    color: #000000 !important;
-    
-    /* Remove the heavy black shadow (it looks dirty on light backgrounds) */
-    text-shadow: none !important;
-    
-    /* Make it bold to stand out */
-    font-weight: 700 !important;
+/* --- RIGHT COLUMN: INFO --- */
+.info-column {
+    flex: 1;
+    min-width: 350px;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Ensure no solid background here covers the glass */
+    background: transparent; 
+}
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
 }
 
-/* 3. Ensure the Button Text is still Black */
-#case-studies .btn,
-#case-studies .btn-primary {
-    color: #000000 !important;
-    font-weight: 800 !important;
-}
-/* --- FIX: MAKE BUTTON TEXT WHITE --- */
-
-/* 1. Target the Button in Case Studies */
-#case-studies .btn,
-#case-studies .btn-primary,
-#case-studies a.btn {
-    /* Set text color to bright White */
-    color: #ffffff !important;
-    
-    /* Make sure it's bold */
-    font-weight: 700 !important;
-    
-    /* Optional: Small shadow to make letters crisp */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+.icon-box {
+    font-size: 1.5rem;
+    color: #00ff7f; /* Green Icons */
+    margin-right: 20px;
+    min-width: 30px;
 }
 
-/* 2. HOVER: Keep it white when you touch the button */
-#case-studies .btn:hover,
-#case-studies .btn-primary:hover {
-    color: #ffffff !important;
-}
-/* --- CHANGE ABOUT US / TEAM BACKGROUND --- */
-
-/* 1. Target the 'About' section */
-#about {
-    /* REPLACE 'team-bg.jpg' with your actual image file name */
-    background-image: url('team.jpg') !important;
-    
-    /* Ensure the image covers the full section */
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    
-    /* Prepare for the overlay */
-    position: relative !important;
-    z-index: 0 !important;
-    
-    /* Remove any solid colors blocking the image */
-    background-color: transparent !important;
+.info-text h4 {
+    color: #00ff7f; /* Green Headings */
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
-/* 2. ADD DARK OVERLAY (So text stays readable) */
-#about::before {
+.info-text p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    .form-column {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+/* --- FOOTER MAIN SECTION --- */
+.site-footer {
+    background-color: #000d1a; /* Very dark, almost black blue */
+    color: #b0c4de; /* Light grey-blue text for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 80px 20px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Creates 4 columns. The first one is slightly wider (1.5fr) */
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Headings */
+/* Center the Heading Text */
+.footer-heading {
+    text-align: center;         /* Centers the text in the column */
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Center the Green Bar */
+.footer-heading::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     
-    /* 70% Dark Tint - Perfect for white text */
-    background: rgba(0, 0, 0, 0.7) !important; 
+    /* These two lines center the bar perfectly: */
+    left: 50%;                  
+    transform: translateX(-50%);
     
-    z-index: -1; /* Puts the tint BEHIND the text */
+    bottom: 0;
+    width: 40px;                /* Length of the bar */
+    height: 4px;                /* Thickness */
+    background-color: #00ff7f;  /* Neon Green */
+    border-radius: 2px;
 }
 
-/* 3. ENSURE TITLE TEXT IS WHITE */
-#about h2,
-#about h3,
-#about p {
-    color: #ffffff !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
-}
-/* --- FIX: TEAM CARD TRANSPARENT & BLUE CIRCLE --- */
-
-/* 1. Make the Team Card Transparent Glass */
-#about .team-card,
-#about .card {
-    /* FORCE Transparency */
-    background-color: transparent !important;
-    background: rgba(255, 255, 255, 0.05) !important; /* 5% opacity glass */
-    
-    /* Frosted Blur */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    
-    /* White Border */
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    
-    /* Remove dark shadows */
-    box-shadow: none !important;
+/* --- COLUMN 1: BRANDING --- */
+.footer-logo h2 {
+    margin-bottom: 0;
+    font-size: 1.8rem;
+    color: #fff;
 }
 
-/* 2. Change the Profile Picture Circle to BLUE */
-#about img, 
-#about .team-photo,
-#about .profile-img {
-    /* Blue Border */
-    border: 3px solid #2979ff !important;
-    
-    /* Blue Glow */
-    box-shadow: 0 0 20px rgba(41, 121, 255, 0.6) !important;
+.footer-logo .highlight {
+    color: #00ff7f; /* Green "ai" */
 }
 
-/* 3. HOVER EFFECT: Make the blue glow stronger when touched */
-#about .team-card:hover img {
-    box-shadow: 0 0 30px rgba(41, 121, 255, 0.9) !important;
-    transform: scale(1.05); /* Slight zoom */
+.company-desc {
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: #00ff7f;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* --- LINKS LISTS --- */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #b0c4de;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00ff7f; /* Green on hover */
+    padding-left: 5px; /* Slight slide effect */
+}
+
+/* --- NEWSLETTER --- */
+.newsletter-desc {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+}
+
+.newsletter-form input:focus {
+    border-color: #00ff7f;
+}
+
+.newsletter-form button {
+    padding: 12px;
+    background-color: #003153; /* Prussian Blue button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #00ff7f;
+    color: #001f3f;
+}
+
+/* --- BOTTOM BAR --- */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.legal-links a {
+    color: #718096;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s;
+}
+
+.legal-links a:hover {
+    color: #fff;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+        text-align: center;
+    }
+    
+    .footer-heading::after {
+        left: 50%;
+        transform: translateX(-50%); /* Center the dash */
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .legal-links a {
+        margin: 0 10px;
+    }
+}
+.footer-logo {
+    display: flex;       /* Aligns image and text side-by-side */
+    align-items: center; /* Vertically centers them */
+    gap: 15px;           /* Adds space between the logo image and the text */
+    margin-bottom: 20px;
+}
+.logo-img {
+    width: 50px;         /* Adjust this size (e.g., 40px or 60px) to fit your design */
+    height: auto;        /* Keeps the aspect ratio correct */
+}
+/* Disable fixed backgrounds on mobile/tablets to stop lag */
+@media (max-width: 1024px) {
+    section, .success-stories-section, .about-us-section, .contact-section {
+        background-attachment: scroll !important;
+    }
+}
+.hero h1, 
+.hero h1 span, 
+.hero p, 
+.typewriter, 
+.highlight {
+    /* 1. Kills any rotation */
+    transform: none !important; 
+    rotate: 0deg !important;
+    
+    /* 2. Kills any leaning/skewing */
+    font-style: normal !important; 
+    
+    /* 3. Ensures the container is flat */
+    perspective: none !important;
 }
