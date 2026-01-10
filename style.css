@@ -7,16 +7,30 @@
     --text-grey: #666666;
     --hero-highlight: #3b82f6; 
     --btn-blue: #0066cc; 
+    --cursor-color:var(--accent-green);
+
+    --bg-dark: #05070a;      
+    --glow-blue: #1a3a5a;    /* Brighter blue */
+    --glow-purple: #251b4a;  /* Brighter purple */
+    --accent-blue: #00a2ff;
+    --text-main: #ffffff;
+    --text-dim: #b0b3b8;
 }
 
 /* --- 2. GLOBAL RESET --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+    margin: 0;
     font-family: 'Inter', sans-serif;
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden; /* Prevents horizontal scrollbar */
+    /* Increased the percentage (80%) so the colors spread further across the black background */
+    background: 
+        radial-gradient(circle at 20% 40%, var(--glow-blue) 0%, var(--bg-dark) 80%),
+        radial-gradient(circle at 80% 20%, var(--glow-purple) 0%, var(--bg-dark) 80%);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    background-attachment: fixed; /* Keeps the gradient static while you scroll */
 }
 
 a { text-decoration: none; }
@@ -49,14 +63,27 @@ header {
 
 /* Optional: Since the header is now floating, you might want to 
    add some top padding to the Hero so text doesn't hide behind the logo */
-.hero {
-    padding-top: 80px; 
-}
-.logo-container { display: flex; align-items: center; gap: 10px; }
 
-.logo-text { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-.text-blue { color: var(--prussian-blue); }
-.text-green { color: var(--accent-green); }
+.logo-container { display: flex; align-items: center; gap: 12px; }
+
+.logo-container img.logo {
+    height: 40px;  /* Adjust this value to make it smaller or bigger */
+    width: auto;   /* Maintains aspect ratio */
+}
+
+.logo-text {
+    font-size: 1.1rem; /* Reduced from 1.5rem */
+    line-height: 1.1;
+}
+
+.tagline-text {
+    font-size: 0.75rem; /* Makes the tagline much smaller and elegant */
+    opacity: 0.8;
+    color: whitesmoke;
+}
+
+.text-white { color: var(--white); }
+
 nav {
     /* THIS IS THE KEY FIX: */
     margin-left: auto; /* Pushes the nav (and button) to the far right */
@@ -68,15 +95,19 @@ nav ul {
     list-style: none; 
     gap: 30px; /* Space between each link */
 }
+
 nav a {
-    color: #000000; /* Black text */
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
+
 nav a:hover {
-    color: var(--accent-green); /* Green on hover */
+    color: var(--accent-blue);
 }
+
 .btn-reach {
     background-color: #000000; 
     color: var(--white);
@@ -88,66 +119,155 @@ nav a:hover {
     /* ensure button doesn't shrink */
     white-space: nowrap; 
 }
+
 .btn-reach:hover {
     background-color: var(--accent-green); 
 }
-/* --- 4. HERO SECTION --- */
-/* --- HERO SECTION --- */
+
+/* Hero Section */
 .hero {
-    position: relative; /* CRITICAL: Holds the video inside this box */
-    width: 100%;
-    height: 100vh;      /* Full screen height */
-    display: flex;      /* Centers the text */
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;   /* Crops any video spillover */
+    display: flex;
+    flex-direction: column; /* Stacks header over the main content */
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 8% 55px; /* Space for fixed navigation */
 }
-.back-video {
-    position: absolute; /* Takes it out of the flex flow */
-    top: 0;
-    left: 0;
+
+/* 1. Top Header Box */
+/* Hero Section - Strict Full Screen Layout */
+.hero {
+    /* 1. Force the container to be exactly the height of the window */
+    min-height: 100vh; 
     width: 100%;
-    height: 100%;
-    object-fit: cover;  /* Ensures it stretches to fill screen without distorting */
-    z-index: -2;        /* Puts it way behind text */
-}
-.hero-content {
+
+    /* 2. Flexbox Magic: This centers everything perfectly */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically aligns to the middle */
+    align-items: center;     /* Horizontally aligns to the middle */
+
+    /* 3. Padding Adjustments */
+    /* 80px Top: clears your fixed navbar */
+    /* 0px Bottom: ensures no extra gap pushes the footer up */
+    padding: 80px 20px 0; 
+    
     position: relative;
-    z-index: 1;
-    text-align: center;
+    box-sizing: border-box;
+}
+.hero-header-content {
     max-width: 900px;
-    
+    margin: 0 auto;
 }
-/* --- TYPEWRITER EFFECT (FIXED) --- */
-.hero h1 {
-    font-size: 3rem; 
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+
+/* 2. Main Layout (The Split Section) */
+.hero-main-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* Space for your upcoming content */
+.hero-left-new {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 40px;
+}
+
+.hero-left-new .lead-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.7;
+    color: var(--white);
+    margin-bottom: 0; /* Remove bottom margin to connect the borders */
+    
+    /* Strong Blue Border */
+    padding: 10px 0 10px 20px;
+    border-left: 3px solid var(--accent-blue);
+    
+    -webkit-font-smoothing: antialiased;
+}
+
+.hero-left-new .detail-text {
+    /* SAME Font family as lead for uniformity */
+    font-family: 'Inter', sans-serif;
+    
+    /* Smaller size and weight, but same style */
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.7;
+    
+    /* Muted border and text color to differentiate */
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 0 20px 25px;
+    
+    /* Subtle Grey/Dim Border that matches the blue alignment */
+    border-left: 3px solid rgba(255, 255, 255, 0.15);
+    
+    max-width: 580px;
+}
+
+.hero-title {
+    font-family: 'Outfit', sans-serif; /* Matches Services Header */
+    font-size: 3rem !important; 
     font-weight: 800;
-    /* Optional: Ensure H1 text alignment is explicitly center */
-    text-align: center; 
+    line-height: 1.1;
+    letter-spacing: -0.02em; /* Premium tight spacing */
+    text-align: center;
+    white-space: nowrap; /* Forces one single line */
+    margin-bottom: 15px;
 }
 
-.typewriter {
-    display: inline-block;
-    overflow: hidden; 
-    white-space: nowrap; 
-    border-right: 4px solid var(--hero-highlight); /* The blinking cursor */
-    width: 0;
-    vertical-align: bottom;
-    color: black;
-    
-    /* Steps(38): Matches the approx character count of "Transforming Business with Advanced AI"
-       Duration: 3s
-    */
-    animation: 
-        typing 2s steps(40, end) forwards, 
-        blink 0.75s step-end infinite;
-    
-    animation-delay: 0.2s;
+.hero-title .highlight {
+    display: inline;      /* Changed from 'block' to keep on same line */
+    color: var(--accent-blue);
+    text-shadow: 0 0 30px rgba(0, 162, 255, 0.3);
+    border-bottom: none;  /* Removes the old underline */
 }
 
-.highlight { color: var(--hero-highlight); }
+.hero-header-content .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0rem !important; /* Forces the small size */
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    opacity: 0.85; /* Makes it look professionally 'dimmed' */
+}
+
+.hero-video {
+    flex: 1.2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-video video {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 24px; /* Matches the rounded look in the image */
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .hero p {
     font-size: 1.1rem;
@@ -163,68 +283,69 @@ nav a:hover {
 .hero-buttons {
     display: flex;
     gap: 20px;
-    /* ADDED: Centers the buttons horizontally */
-    justify-content: center; 
-}
-/* --- PRIMARY BUTTON (Get Started) --- */
-.btn-primary {
-    background-color: var(--btn-blue);
-    color: var(--white);
-    padding: 15px 35px;
-    border-radius: 50px; /* Makes it pill-shaped (more modern) */
+    justify-content: center !important;
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
-    border: none;
-    
-    /* The Glow Effect */
-    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4); 
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* --- 1. PRIMARY BUTTON (Get Started) --- */
+.btn-primary {
+    background: var(--accent-blue);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid var(--accent-blue); /* Added border to match sizing */
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
     transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.6); /* Stronger glow on hover */
+    background: transparent; /* Becomes outline on hover */
+    color: white;
 }
 
-/* --- SECONDARY BUTTON (Explore Services) --- */
-.btn-secondary {
-    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint */
-    backdrop-filter: blur(5px); /* Blurs the circuit lines behind the text */
-    
-    color: #000000; 
-    border: 2px solid #000000; /* Slightly thicker border */
-    
-    padding: 15px 35px;
-    border-radius: 50px; /* Pill-shaped */
+/* --- 2. OUTLINE BUTTON (Explore Services) --- */
+/* Target both btn-outline and btn-secondary for safety */
+.btn-outline, .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    border: 2px solid white; /* Initial white outline */
     transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
-    background-color: #000000;
-    color: #ffffff;
-    border-color: #000000;
+.btn-outline:hover, .btn-secondary:hover {
+    background: var(--accent-blue); /* Becomes solid blue on hover */
+    border-color: var(--accent-blue);
+    color: white;
     transform: translateY(-3px);
-}
-/* --- ANIMATION KEYFRAMES (FIXED) --- */
-@keyframes typing {
-    from { width: 0; }
-    /* 39ch is the specific width for your sentence in the Inter font.
-       If the cursor is still too far right, lower this number (e.g., 38ch).
-       If the text is cut off (missing "I"), increase this number (e.g., 40ch).
-    */
-    to { width: 30ch; } 
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
 }
 
-@keyframes blink {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--hero-highlight); }
-}
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 1024px) {
     /* Tablet/Laptop adjustments */
     .hero h1 { font-size: 2.2rem; } /* Shrink font so it fits on smaller screens */
+}
+
+@media (max-width: 900px) {
+    .services-split-container {
+        flex-direction: column;
+    }
+    .services-visual {
+        position: relative;
+        top: 0;
+        margin-bottom: 40px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -242,148 +363,156 @@ nav a:hover {
     
     .hero-buttons { flex-direction: column; }
 /* --- REACH US BUTTON (Pill Shape) --- */
-.btn-reach {
-    background-color: var(--btn-blue);
-    color: var(--white);
-    
-    /* 1. THIS CONTROLS THE SHAPE */
-    border-radius: 50px; /* Makes it fully rounded like "Get Started" */
-    
-    /* 2. Remove default borders */
-    border: none;
-    
-    padding: 10px 25px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+    .btn-reach {
+        background-color: var(--btn-blue);
+        color: var(--white);
+        
+        /* 1. THIS CONTROLS THE SHAPE */
+        border-radius: 50px; /* Makes it fully rounded like "Get Started" */
+        
+        /* 2. Remove default borders */
+        border: none;
+        
+        padding: 10px 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .btn-reach:hover {
+        transform: translateY(-3px); /* Hover float effect */
+        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4); /* Glow effect */
+    }
 }
 
-.btn-reach:hover {
-    transform: translateY(-3px); /* Hover float effect */
-    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4); /* Glow effect */
-}
-}
 /* --- LOGO SIZE CONTROL --- */
-.logo{
-    height: 40px;  /* Adjust this number to make it bigger/smaller */
-    width: auto;
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
 }
-/* --- SERVICES SECTION STYLES --- */
-.services-section {
-    padding: 100px 5%;
-    
-    /* 1. PUT YOUR IMAGE FILENAME HERE */
-    background-image: url('servicesimg.jpg'); 
-    
-    /* 2. THE MAGIC SCROLL EFFECT */
-    background-attachment: scroll; /* This makes the image stay still while content scrolls */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* Optional: Add a dark tint so the white cards pop out */
+
+/* --- PRODUCTS SECTION (Glow on Left) --- */
+.products-section {
+    padding: 50px 8%;
+    /* Horizontal gradient matching the "Z" flow (starts Left) */
+    background: linear-gradient(
+        90deg, 
+        hsl(221, 39%, 15%) 0%,  /* Dark Navy on the Left */
+        #05070a 60%            /* Fades to Black on the Right */
+    ) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Local Left Glow to anchor the section */
+.products-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 600px;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 162, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.section-header p {
-    max-width: 700px;
-    margin: 0 auto;
-    color: whitesmoke;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-/* Grid Layout */
-.services-grid {
-    /* Switch to Flexbox to handle the centering better */
-    display: flex;
-    flex-wrap: wrap; /* Allows cards to wrap to the next line */
-    justify-content: center; /* CENTERS the items in the last row */
-    gap: 30px; /* Space between cards */
-    
-    max-width: 1300px;
-    margin: 0 auto;
-}
-.service-card {
-    /* 1. Sizing Logic */
-    /* Grow: 1 (fill space), Shrink: 1, Basis: 350px (minimum width) */
-    flex: 1 1 350px; 
-    
-    /* 2. Important: Stop them from getting too wide */
-    /* This ensures the bottom 2 cards don't stretch to fill the whole screen width.
-       They will match the size of the top cards. */
-    max-width: 400px; 
-    
-    /* Dark Glass Styles (Keep your existing visual styles) */
-    background: rgba(20, 20, 30, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* PRODUCT CARDS */
+.product-card {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 24px;
     padding: 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+/* THE ICON CONTAINER (Matches your Image Radius) */
+.product-icon-container {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.2);
+    border-radius: 18px; /* Matches the rounded look of your videos/images */
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-/* Hover Effect: Slightly lighter and lifts up */
-/* --- HOVER GLOW EFFECT (Like Reference Image) --- */
-/* --- HOVER EFFECTS: CARD & ICON GLOW --- */
-
-/* 1. The Card Glow (Border + Outer Light) */
-.service-card:hover {
-    transform: translateY(-5px);
-    border-color: #3b82f6; 
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); 
-    background: rgba(30, 40, 70, 0.8);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: var(--accent-blue);
+    font-size: 1.8rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* 2. The Icon Glow (Triggered when Card is hovered) */
-.service-card:hover .icon-box svg {
-    /* Change icon color to Neon Blue */
-    color: #3b82f6; 
-    
-    /* This creates the "Neon Tube" glow effect on the lines of the SVG */
-    filter: drop-shadow(0 0 8px #3b82f6); 
-    
-    /* Slight pop animation */
-    transform: scale(1.1);
-    transition: all 0.3s ease;
+.product-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--accent-blue);
+}
+
+.product-card.highlighted {
+    border: 1px solid rgba(0, 162, 255, 0.4);
+    background: rgba(0, 162, 255, 0.03);
+}
+
+.product-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.product-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.7;
+    color: var(--white);
+    margin-bottom: 25px; /* Remove bottom margin to connect the borders */
+    -webkit-font-smoothing: antialiased;
+}
+
+.product-link {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s ease;
+}
+
+.product-link:hover {
+    gap: 12px;
+}
+
+.image-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(0, 162, 255, 0.15);
 }
 
 /* 2. Remove Old Colored Top Borders */
 .border-blue, .border-purple, .border-green {
     border-top: none !important;
-}
-
-/* 3. Typography (White and Grey) */
-.service-card h3 {
-    color: #ffffff; /* Pure White Title */
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.service-card p {
-    color: #b0b0b0; /* Light Grey Description */
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1;
 }
 
 /* 4. Icons (Pure White, No Box) */
@@ -393,8 +522,18 @@ nav a:hover {
     border: none !important;
     width: auto;
     height: auto;
-    margin-bottom: 25px;
     padding: 0;
+    display: flex;         /* Enables side-by-side alignment */
+    align-items: center;   /* Vertically centers the icon with the text */
+    gap: 15px;             /* Adds space between the icon and the text */
+    margin-bottom: 18px;   /* Optional: adds space below the header */
+}
+
+.icon-box h3 {
+    margin: 0;
+    line-height: 1;         /* Crucial: Removes extra spacing above/below letters */
+    display: flex;          /* Ensures the text block itself follows flex rules */
+    align-items: center;    /* Secondary centering for the text block */
 }
 
 /* Make the SVG icon itself white */
@@ -404,101 +543,10 @@ nav a:hover {
     color: #ffffff; /* Sets stroke/fill to white */
     /* Ensure fill is none if using stroke icons */
     fill: none; 
+    display: block;         /* Removes the 'inline' baseline gap at the bottom */
+    flex-shrink: 0;
 }
 
-/* 5. Lists (Simple Dots, Grey Text) */
-.service-list {
-    list-style: none; /* Remove default bullets */
-    padding-left: 10px; /* Slight indent */
-    margin-bottom: 30px;
-}
-
-.service-list li {
-    color: #b0b0b0; /* Light grey text */
-    margin-bottom: 12px;
-    position: relative;
-    padding-left: 20px; /* Space for custom dot */
-}
-
-/* Create the custom small dot */
-.service-list li::before {
-    content: ''; /* Empty content for the dot */
-    position: absolute;
-    left: 0;
-    top: 8px; /* Center dot vertically with text */
-    width: 6px;
-    height: 6px;
-    background-color: #ffffff; /* White dot */
-    border-radius: 50%; /* Make it round */
-    
-    /* Remove old checkmark styling */
-    box-shadow: none !important;
-    color: transparent !important;
-    font-size: 0;
-    display: block;
-}
-
-/* 6. Links (Keep Blue) */
-.service-card a {
-    color: #3b82f6; /* Bright Blue like the image */
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: auto; /* Pushes to bottom */
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transform: translateZ(0); 
-    will-change: transform, backdrop-filter;
-}
-
-.service-card a:hover {
-    gap: 12px; /* Arrow moves on hover */
-    color: #60a5fa; /* Lighter blue */
-}
-/* --- TECHNOLOGY SECTION (Dark Matrix Theme) --- */
-.tech-stack {
-    padding: 100px 5%;
-    min-height: 850px;
-    
-    /* 1. PUT YOUR IMAGE FILENAME HERE */
-    background-image: url('techstack.jpg'); 
-    
-    /* 2. Background Settings */
-    background-size: cover;       /* Fills the whole area */
-    background-position: center;  /* Centers the image */
-    background-repeat: no-repeat;
-    
-    /* 3. Overlay Setup */
-    position: relative; /* Needed for the overlay to sit on top */
-    z-index: 1;         /* Ensures content sits above the overlay */
-    
-    text-align: center;
-}
-.tech-stack::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* Adjust the last number (0.85) to control brightness.
-       0.90 = Extremely light (almost white)
-       0.70 = Medium brightness
-       0.50 = Darker
-    */
-    background-color: rgba(255, 255, 255, 0.20); 
-    
-    z-index: 1; /* Sits on top of image, behind text */
-}
-
-/* --- BRING CONTENT TO FRONT --- */
-/* This ensures the Title and Cards sit ON TOP of the white layer */
-.tech-stack > * {
-    position: relative;
-    z-index: 2;
-}
 /* Headers */
 .section-title {
     font-size: 2.5rem;
@@ -513,50 +561,6 @@ nav a:hover {
     font-size: 1.1rem;
 }
 
-/* Grid Layout */
-.tech-grid {
-    display: grid;
-    /* Fits 4 cards perfectly */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* --- THE CARD (tech-column) --- */
-.tech-column {
-    /* Dark Glass Effect */
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* Subtle Border */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 40px 20px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-/* Card Title */
-.tech-column h4 {
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin: 20px 0;
-    font-weight: 700;
-}
-
-/* --- ICONS (FontAwesome) --- */
-.tech-icon {
-    font-size: 3rem; /* Controls icon size */
-    color: #ffffff;   /* Default White */
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-}
-
 /* --- PILLS (Tags) --- */
 .pill-container {
     display: flex;
@@ -565,125 +569,7 @@ nav a:hover {
     gap: 10px;
 }
 
-.tech-pill {
-    background: rgba(255, 255, 255, 0.1); /* Glass Grey */
-    color: #cccccc;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-
-/* --- HOVER EFFECTS (Super Bright Neon Green) --- */
-/* --- HOVER EFFECTS (Darker "Matrix" Neon Green) --- */
-
-/* 1. Card Glow */
-.tech-column:hover {
-    /* Deep Neon Green Border */
-    border-color: #00E054; 
-    
-    /* Darker, richer green glow */
-    box-shadow: 0 0 30px rgba(0, 224, 84, 0.4), inset 0 0 10px rgba(0, 224, 84, 0.1);
-    
-    transform: translateY(-5px); 
-    background: rgba(0, 224, 84, 0.03); /* Very subtle dark green tint */
-}
-
-/* 2. Icon Glow */
-.tech-column:hover .tech-icon {
-    /* Pure Green Icon */
-    color: #00E054; 
-    
-    /* A deep green light emitting from the icon */
-    text-shadow: 0 0 15px rgba(0, 224, 84, 0.8); 
-    
-    transform: scale(1.1);
-}
-
-/* 3. Pill Glow */
-.tech-column:hover .tech-pill {
-    background: rgba(0, 224, 84, 0.15); 
-    color: #ffffff; 
-    border-color: #00E054; 
-    box-shadow: 0 0 8px rgba(0, 224, 84, 0.3);
-}
 /* Section Container - Set height here to match Tech Stack */
-.success-stories-section {
-    position: relative;
-    width: 100%;
-    /* Keep this height to match your Tech Stack section */
-    min-height: 850px; 
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* BACKGROUND IMAGE CONFIGURATION */
-    background-image: url('success.jpg'); 
-    background-size: cover;   /* Ensures image covers the whole area */
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-/* Content Styling */
-.content-wrapper {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    
-    /* GLASS EFFECT SETTINGS */
-    background: rgba(255, 255, 255, 0.25); /* Semi-transparent white */
-    backdrop-filter: blur(12px);            /* Blurs the image behind the card */
-    -webkit-backdrop-filter: blur(12px);    /* Safari support */
-    
-    /* Border and Shape */
-    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border */
-    border-radius: 20px;                        /* Rounded corners */
-    padding: 60px 40px;                         /* Spacing inside the card */
-    
-    /* Shadow to lift the card off the background */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    transform: translateZ(0); 
-    will-change: transform, backdrop-filter;
-}
-
-.section-title1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color:black; /* Dark text for contrast against light bg */
-    margin-bottom: 1rem;
-}
-
-.section-subtitle2 {
-    font-size: 1.25rem;
-    color: black;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-}
-
-/* Button Styling */
-.cta-button {
-    display: inline-block;
-    background-color: #003153; /* Prussian Blue */
-    color: #ffffff;
-    padding: 15px 32px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 50px; /* Pill shape */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 49, 83, 0.3);
-}
-
-.cta-button:hover {
-    background-color: #004a7c; /* Slightly lighter blue on hover */
-    transform: translateY(-2px);
-}
 .about-us-section {
     position: relative;
     width: 100%;
@@ -980,17 +866,11 @@ nav a:hover {
     /* Ensure no solid background here covers the glass */
     background: transparent; 
 }
+
 .info-item {
     display: flex;
     align-items: flex-start;
     margin-bottom: 40px;
-}
-
-.icon-box {
-    font-size: 1.5rem;
-    color: #00ff7f; /* Green Icons */
-    margin-right: 20px;
-    min-width: 30px;
 }
 
 .info-text h4 {
